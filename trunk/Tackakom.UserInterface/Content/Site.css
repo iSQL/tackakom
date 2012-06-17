@@ -4,7 +4,7 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 body {
-    background-color: #5c87b2;
+    background-color: orange;
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -53,6 +53,7 @@ h1 {
     font-size: 2em;
     padding-bottom: 0;
     margin-bottom: 0;
+    
 }
 
 h2 {
@@ -93,7 +94,7 @@ header h1, #header h1 {
     font-weight: bold;
     padding: 5px 0;
     margin: 0;
-    color: #fff;
+    color: blue;
     border: none;
     line-height: 2em;
     font-size: 32px !important;

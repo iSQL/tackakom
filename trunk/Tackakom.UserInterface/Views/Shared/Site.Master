@@ -12,7 +12,7 @@
     <div class="page">
         <header>
             <div id="title">
-                <h1>My MVC Application</h1>
+                <h1>TackaKom projekat</h1>
             </div>
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>

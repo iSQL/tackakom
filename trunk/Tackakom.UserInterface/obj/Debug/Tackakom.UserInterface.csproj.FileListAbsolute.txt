@@ -1,11 +1,11 @@
 D:\Others\Tackakom.UserInterface\bin\Tackakom.UserInterface.dll
 D:\Others\Tackakom.UserInterface\bin\Tackakom.UserInterface.pdb
 D:\Others\Tackakom.UserInterface\bin\EntityFramework.dll
-D:\Others\Tackakom.UserInterface\bin\EntityFramework.xml
-D:\Others\Tackakom.UserInterface\obj\Debug\ResolveAssemblyReference.cache
-D:\Others\Tackakom.UserInterface\obj\Debug\Tackakom.UserInterface.dll
-D:\Others\Tackakom.UserInterface\obj\Debug\Tackakom.UserInterface.pdb
 D:\Others\Tackakom.UserInterface\bin\Tackakom.Model.dll
 D:\Others\Tackakom.UserInterface\bin\Tackakom.Repository.dll
 D:\Others\Tackakom.UserInterface\bin\Tackakom.Model.pdb
 D:\Others\Tackakom.UserInterface\bin\Tackakom.Repository.pdb
+D:\Others\Tackakom.UserInterface\bin\EntityFramework.xml
+D:\Others\Tackakom.UserInterface\obj\Debug\ResolveAssemblyReference.cache
+D:\Others\Tackakom.UserInterface\obj\Debug\Tackakom.UserInterface.dll
+D:\Others\Tackakom.UserInterface\obj\Debug\Tackakom.UserInterface.pdb

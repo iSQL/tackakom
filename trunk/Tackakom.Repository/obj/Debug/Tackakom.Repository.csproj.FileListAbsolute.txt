@@ -1,0 +1,7 @@
+D:\Others\Tackakom.Repository\bin\Debug\Tackakom.Repository.dll
+D:\Others\Tackakom.Repository\bin\Debug\Tackakom.Repository.pdb
+D:\Others\Tackakom.Repository\bin\Debug\Tackakom.Model.dll
+D:\Others\Tackakom.Repository\bin\Debug\Tackakom.Model.pdb
+D:\Others\Tackakom.Repository\obj\Debug\ResolveAssemblyReference.cache
+D:\Others\Tackakom.Repository\obj\Debug\Tackakom.Repository.dll
+D:\Others\Tackakom.Repository\obj\Debug\Tackakom.Repository.pdb

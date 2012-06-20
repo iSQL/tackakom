@@ -45,8 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbTackakom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tackakom.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tackakom.Model\Tackakom.Model.csproj">

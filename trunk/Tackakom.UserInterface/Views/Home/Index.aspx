@@ -7,6 +7,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: ViewBag.Message %></h2>
     <p>
-        Početna stranica <a href="http://code.google.com/p/tackakom/" title="Google code"> Google code link</a>.
+        Početna stranica
     </p>
 </asp:Content>

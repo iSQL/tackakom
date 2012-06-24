@@ -8,3 +8,4 @@ C:\TackaKom\svn\trunk\Tackakom.Model\bin\Debug\Tackakom.Model.pdb
 C:\TackaKom\svn\trunk\Tackakom.Model\obj\Debug\ResolveAssemblyReference.cache
 C:\TackaKom\svn\trunk\Tackakom.Model\obj\Debug\Tackakom.Model.dll
 C:\TackaKom\svn\trunk\Tackakom.Model\obj\Debug\Tackakom.Model.pdb
+C:\TackaKom\svn\trunk\Tackakom.Model\bin\Debug\Tackakom.Model.dll.config

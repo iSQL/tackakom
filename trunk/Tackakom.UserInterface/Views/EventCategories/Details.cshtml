@@ -1,0 +1,55 @@
+﻿@model Tackakom.Model.EventCategory
+@using Tackakom.UserInterface.Helpers
+<link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Details";
+}
+<link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+<h2>Događaji kategorije</h2>
+
+<fieldset>
+    <legend>Kategorija</legend>
+
+    <div class="display-label">Ime</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Opis</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">Ikona</div>
+    <div class="display-field">
+        @Html.Image(Model.Id, Model.Icon, Model.Icon, Model.Title)
+
+    </div>
+</fieldset>
+
+<div class="display-label">Događaji</div>
+<div class="display-field">
+<table>
+<tr>
+<td>Naslov</td><td>Opis</td><td>Ulaz</td>
+</tr>
+@foreach (var item in Model.Events)
+{
+    <tr>
+        <td>
+        @Html.DisplayFor(Naslov => item.Title)
+        </td>
+        <td>
+        @Html.DisplayFor(Opis => item.Description)
+        </td>
+        <td>
+        @Html.DisplayFor(Ulaz => item.Entry)
+        </td>
+    </tr>
+}
+</table>
+</div>
+<p>
+    @Html.ActionLink("Izmeni", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Nazad na listu", "Index")
+</p>

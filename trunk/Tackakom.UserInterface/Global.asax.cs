@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-
+using System.Data.Entity;
+using Tackakom.Repository;
+using Tackakom.Model;
 namespace Tackakom.UserInterface
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -29,8 +31,10 @@ namespace Tackakom.UserInterface
 
         }
 
+
         protected void Application_Start()
-        {
+        {   
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<DbTackakom>());
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

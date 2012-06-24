@@ -10,29 +10,29 @@ using Tackakom.Repository;
 
 namespace Tackakom.UserInterface.Controllers
 { 
-    public class IconController : Controller
+    public class EventCategoriesController : Controller
     {
         private DbTackakom db = new DbTackakom();
 
         //
-        // GET: /Icon/
+        // GET: /EventCategories/
 
         public ViewResult Index()
         {
-            return View(db.Icons.ToList());
+            return View(db.EventCategories.ToList());
         }
 
         //
-        // GET: /Icon/Details/5
+        // GET: /EventCategories/Details/5
 
         public ViewResult Details(int id)
         {
-            Icon icon = db.Icons.Find(id);
-            return View(icon);
+            EventCategory eventcategory = db.EventCategories.Find(id);
+            return View(eventcategory);
         }
 
         //
-        // GET: /Icon/Create
+        // GET: /EventCategories/Create
 
         public ActionResult Create()
         {
@@ -40,62 +40,62 @@ namespace Tackakom.UserInterface.Controllers
         } 
 
         //
-        // POST: /Icon/Create
+        // POST: /EventCategories/Create
 
         [HttpPost]
-        public ActionResult Create(Icon icon)
+        public ActionResult Create(EventCategory eventcategory)
         {
             if (ModelState.IsValid)
             {
-                db.Icons.Add(icon);
+                db.EventCategories.Add(eventcategory);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
 
-            return View(icon);
+            return View(eventcategory);
         }
         
         //
-        // GET: /Icon/Edit/5
+        // GET: /EventCategories/Edit/5
  
         public ActionResult Edit(int id)
         {
-            Icon icon = db.Icons.Find(id);
-            return View(icon);
+            EventCategory eventcategory = db.EventCategories.Find(id);
+            return View(eventcategory);
         }
 
         //
-        // POST: /Icon/Edit/5
+        // POST: /EventCategories/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Icon icon)
+        public ActionResult Edit(EventCategory eventcategory)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(icon).State = EntityState.Modified;
+                db.Entry(eventcategory).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(icon);
+            return View(eventcategory);
         }
 
         //
-        // GET: /Icon/Delete/5
+        // GET: /EventCategories/Delete/5
  
         public ActionResult Delete(int id)
         {
-            Icon icon = db.Icons.Find(id);
-            return View(icon);
+            EventCategory eventcategory = db.EventCategories.Find(id);
+            return View(eventcategory);
         }
 
         //
-        // POST: /Icon/Delete/5
+        // POST: /EventCategories/Delete/5
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {            
-            Icon icon = db.Icons.Find(id);
-            db.Icons.Remove(icon);
+            EventCategory eventcategory = db.EventCategories.Find(id);
+            db.EventCategories.Remove(eventcategory);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

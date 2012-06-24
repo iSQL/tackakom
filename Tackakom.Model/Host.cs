@@ -9,8 +9,10 @@ namespace Tackakom.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Description { get; set; }
-        public int Image { get; set; }
-        public int Adress { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
+        public string Address { get; set; }
+        public Guid UserID { get; set; }
+        public virtual ICollection<Event> Events { get; set; }
     }
 }

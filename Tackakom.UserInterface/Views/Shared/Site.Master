@@ -19,8 +19,9 @@
             </div>
             <nav>
                 <ul id="menu">
-                    <li><%: Html.ActionLink("Home", "Index", "Home")%></li>
-                    <li><%: Html.ActionLink("About", "About", "Home")%></li>
+                    <li><%: Html.ActionLink("Početna", "Index", "Home")%></li>
+                    <li><%: Html.ActionLink("Test stranica", "About", "Home")%></li>
+                    <li><%: Html.ActionLink("Kategorije događaja", "Index", "EventCategories")%></li>
                 </ul>
             </nav>
         </header>

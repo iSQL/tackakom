@@ -12,8 +12,17 @@ namespace Tackakom.Repository
         public DbSet<Host> Hosts { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<EventCategory> EventCategories { get; set; }
-        public DbSet<Icon> Icons { get; set; }
+        public DbSet<User> Users { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //modelBuilder.Entity<Event>()
+            //    .HasMany(w => w.IconId).WithMany()
+            //    .Map(map=>map.ToTable("dboIcons")
+            //    .MapLeftKey("")
+            //modelBuilder.Entity<User>().ToTable("aspnet_Users");
+            base.OnModelCreating(modelBuilder);
+        }
         
     }
 }

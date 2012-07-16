@@ -15,3 +15,13 @@ C:\TackaKom\svn\trunk\Tackakom.Repository\bin\Debug\EntityFramework.xml
 C:\TackaKom\svn\trunk\Tackakom.Repository\obj\Debug\ResolveAssemblyReference.cache
 C:\TackaKom\svn\trunk\Tackakom.Repository\obj\Debug\Tackakom.Repository.dll
 C:\TackaKom\svn\trunk\Tackakom.Repository\obj\Debug\Tackakom.Repository.pdb
+C:\Users\Mitrovic\Desktop\Project\Tackakom.Repository\bin\Debug\Tackakom.Repository.dll.config
+C:\Users\Mitrovic\Desktop\Project\Tackakom.Repository\bin\Debug\Tackakom.Repository.dll
+C:\Users\Mitrovic\Desktop\Project\Tackakom.Repository\bin\Debug\Tackakom.Repository.pdb
+C:\Users\Mitrovic\Desktop\Project\Tackakom.Repository\bin\Debug\EntityFramework.dll
+C:\Users\Mitrovic\Desktop\Project\Tackakom.Repository\bin\Debug\Tackakom.Model.dll
+C:\Users\Mitrovic\Desktop\Project\Tackakom.Repository\bin\Debug\Tackakom.Model.pdb
+C:\Users\Mitrovic\Desktop\Project\Tackakom.Repository\bin\Debug\EntityFramework.xml
+C:\Users\Mitrovic\Desktop\Project\Tackakom.Repository\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Mitrovic\Desktop\Project\Tackakom.Repository\obj\Debug\Tackakom.Repository.dll
+C:\Users\Mitrovic\Desktop\Project\Tackakom.Repository\obj\Debug\Tackakom.Repository.pdb

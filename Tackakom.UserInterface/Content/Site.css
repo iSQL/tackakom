@@ -164,3 +164,15 @@ float:left;
 	background: orange;
 	margin: auto;
 }
+#share
+{
+    height: 100%;
+    width: 50%;
+    background: blue;
+    margin: auto;
+    text-align:center;
+}
+#share img
+{
+margin: 5px 10px;    
+}

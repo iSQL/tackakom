@@ -19,5 +19,10 @@ namespace Tackakom.UserInterface.Controllers
         {
             return View();
         }
+
+        public ActionResult Single()
+        {
+            return View();
+        }
     }
 }

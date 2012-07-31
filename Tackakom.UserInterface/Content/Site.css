@@ -76,11 +76,11 @@ input {
 *  \_______)(_______/ (_______/      (_______/|___/          \_______)\"_____/    \_______)\_______)  *
 *                                                                                                     *
 ******************************************************************************************************/
+
 body
 {
 background: #e7dbbb;    
 }
-
 
 
 /* Header
@@ -194,7 +194,7 @@ background: url("./Slike/logo-bazinga.png");
 	margin: 10px;
 	padding: 10px;
 	text-indent: 20px;
-	min-height: 115px;
+	height: 115px;
 	cursor:pointer;
 	-moz-transition: all 0.3s;
 	box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
@@ -217,7 +217,20 @@ text-align:justify;
 .event span
 {
 float:left;
-font-size: 14px;   
+font-size: 14px;
+font-weight:bold; 
+position: absolute;  
+bottom: 10px;
+}
+.event em
+{
+color: #BF3E2D;
+-moz-transition: all 0.2s;
+}
+.event em:hover
+{
+color:#E54E3D;
+font-size: 16px;
 }
 .event a
 {
@@ -227,10 +240,13 @@ text-decoration: none;
 color: #BF3E2D;
 font-weight: bold;
 -moz-transition: all 0.2s;    
+position: absolute;  
+bottom: 10px;
+right: 15px;
 }
 .event a:hover
 {
-color:#94382B;
+color:#E54E3D;
 font-size: 17px;
 }
 .event h1
@@ -276,4 +292,30 @@ height:64;
 #share img:hover
 {
 -moz-transform: scale(1.1);
+}
+
+
+/*POPUP SLIKA
+-------------------------------------------------------------------------------------------*/
+#slika
+{
+    background-color:White;
+    border: solid 3px #444;
+    -moz-transform: scale(1.3);
+    margin-top: 10px;
+}
+
+.slika
+{
+    margin: -15px;
+    /*background-color:White;
+    border: solid 3px #444;*/
+    -moz-transform: scale(0.6);
+    -moz-transition: all 0.3s;
+}
+
+.slika:hover
+{
+    -moz-transform: scale(0.8);
+    cursor:pointer;
 }

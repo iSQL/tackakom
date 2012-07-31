@@ -26,7 +26,7 @@ var slika9 = '<img onclick="ChoseImage(9)" id="img9" class = "slika" src="../../
 var slika10 = '<img onclick="ChoseImage(10)" id="img10" class = "slika" src="../../Content/Slike/Ikonice/kockaste/wordfoto.png" />';
 
 
-//DODAJ NOVI POPUP------------------------------------------------------------------------------------------------
+//DODAJ NOVI------------------------------------------------------------------------------------------------
 function AddStuff() {
     $.fx.speeds._default = 1000;
     var $dialog = $('<div></div>')
@@ -49,6 +49,7 @@ function AddStuff() {
                 buttons:
                     {
                         "Dodaj događaj": function () {
+
                             $(this).dialog("close");
                             $(this).dialog("destroy").remove();
                         },

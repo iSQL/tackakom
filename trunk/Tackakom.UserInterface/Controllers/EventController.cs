@@ -10,31 +10,29 @@ using Tackakom.Repository;
 
 namespace Tackakom.UserInterface.Controllers
 { 
-    public class EventCategoryController : Controller
+    public class EventController : Controller
     {
         private DbTackakom db = new DbTackakom();
-        
+
         //
-        // GET: /EventCategory/
+        // GET: /Event/
 
         public ViewResult Index()
         {
-            Event a = db.Events.Find(2);
-            ViewBag.s = a.Title.ToString();
-            return View(db.EventCategories.ToList());
+            return View(db.Events.ToList());
         }
 
         //
-        // GET: /EventCategory/Details/5
+        // GET: /Event/Details/5
 
         public ViewResult Details(int id)
         {
-            EventCategory eventcategory = db.EventCategories.Find(id);
-            return View(eventcategory);
+            Event _event = db.Events.Find(id);
+            return View(_event);
         }
 
         //
-        // GET: /EventCategory/Create
+        // GET: /Event/Create
 
         public ActionResult Create()
         {
@@ -42,62 +40,62 @@ namespace Tackakom.UserInterface.Controllers
         } 
 
         //
-        // POST: /EventCategory/Create
+        // POST: /Event/Create
 
         [HttpPost]
-        public ActionResult Create(EventCategory eventcategory)
+        public ActionResult Create(Event _event)
         {
             if (ModelState.IsValid)
             {
-                db.EventCategories.Add(eventcategory);
+                db.Events.Add(_event);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
 
-            return View(eventcategory);
+            return View(_event);
         }
         
         //
-        // GET: /EventCategory/Edit/5
+        // GET: /Event/Edit/5
  
         public ActionResult Edit(int id)
         {
-            EventCategory eventcategory = db.EventCategories.Find(id);
-            return View(eventcategory);
+            Event _event = db.Events.Find(id);
+            return View(_event);
         }
 
         //
-        // POST: /EventCategory/Edit/5
+        // POST: /Event/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(EventCategory eventcategory)
+        public ActionResult Edit(Event _event)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(eventcategory).State = EntityState.Modified;
+                db.Entry(_event).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(eventcategory);
+            return View(_event);
         }
 
         //
-        // GET: /EventCategory/Delete/5
+        // GET: /Event/Delete/5
  
         public ActionResult Delete(int id)
         {
-            EventCategory eventcategory = db.EventCategories.Find(id);
-            return View(eventcategory);
+            Event _event = db.Events.Find(id);
+            return View(_event);
         }
 
         //
-        // POST: /EventCategory/Delete/5
+        // POST: /Event/Delete/5
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {            
-            EventCategory eventcategory = db.EventCategories.Find(id);
-            db.EventCategories.Remove(eventcategory);
+            Event _event = db.Events.Find(id);
+            db.Events.Remove(_event);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

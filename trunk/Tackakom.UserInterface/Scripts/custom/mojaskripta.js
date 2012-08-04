@@ -1,4 +1,3 @@
-var brojEventa = 9;   //+1 zbog petlje
 
 var naslov = '<input type="text" name="naslov" id="naslov" placeholder="Naslov događaja..." class="text ui-widget-content ui-corner-all" /> <br/> <br/>';
 var opis = '<textarea id="opis" placeholder="Opis događaja..." class="text ui-widget-content ui-corner-all"></textarea><br/><br/>';
@@ -17,7 +16,7 @@ var slikaVR = "";
 var slika1 = '<img onclick="ChoseImage(1)" id="img1" class = "slika" src="../../Content/Slike/Ikonice/kockaste/fingerfocus.png" />';
 var slika2 = '<img onclick="ChoseImage(2)" id="img2" class = "slika" src="../../Content/Slike/Ikonice/kockaste/fxphotostudio.png" />';
 var slika3 = '<img onclick="ChoseImage(3)" id="img3" class = "slika" src="../../Content/Slike/Ikonice/kockaste/halftone.png" />';
-var slika4 = '<img onclick="ChoseImage(4)" id="img4" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lens+.png" />';
+var slika4 = '<img onclick="ChoseImage(4)" id="img4" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lens.png" />';
 var slika5 = '<img onclick="ChoseImage(5)" id="img5" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lithogram.png" />';
 var slika6 = '<img onclick="ChoseImage(6)" id="img6" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pano.png" />';
 var slika7 = '<img onclick="ChoseImage(7)" id="img7" class = "slika" src="../../Content/Slike/Ikonice/kockaste/perfectphoto.png" />';
@@ -28,303 +27,304 @@ var slika10 = '<img onclick="ChoseImage(10)" id="img10" class = "slika" src="../
 
 //DODAJ NOVI------------------------------------------------------------------------------------------------
 function AddStuff() {
-    $.fx.speeds._default = 1000;
-    var $dialog = $('<div></div>')
-    //SADRZAJ DIJALOGA
+	$.fx.speeds._default = 1000;
+	var $dialog = $('<div></div>')
+	//SADRZAJ DIJALOGA
 			.html
-            (
-            '<form>' + naslov + opis + slika + datum + pocetak + kraj + '</form>'
-            )
+			(
+			'<form>' + naslov + opis + slika + datum + pocetak + kraj + '</form>'
+			)
 
-    //OPCIJE DIJALOGA
-            .dialog
-            ({
-                autoOpen: false,
-                show: "explode",
-                hide: "explode",
-                title: "Dodaj novi događaj",
-                modal: true,
-                width: 500,
-                height: 490,
-                buttons:
-                    {
-                        "Dodaj događaj": function () {
+	//OPCIJE DIJALOGA
+			.dialog
+			({
+				autoOpen: false,
+				show: "explode",
+				hide: "explode",
+				title: "Dodaj novi događaj",
+				modal: true,
+				width: 500,
+				height: 490,
+				buttons:
+					{
+						"Dodaj događaj": function () {
 
-                            $(this).dialog("close");
-                            $(this).dialog("destroy").remove();
-                        },
-                        "Izađi": function () {
-                            $(this).dialog("close");
-                            $(this).dialog("destroy").remove();
-                        }
-                    }
+							$(this).dialog("close");
+							$(this).dialog("destroy").remove();
+						},
+						"Izađi": function () {
+							$(this).dialog("close");
+							$(this).dialog("destroy").remove();
+						}
+					}
 
-            });
+			});
 
-        $dialog.dialog('open');
-        //return false; <---- ????????
+		$dialog.dialog('open');
+		//return false; <---- ????????
 
-        //DATE PICK
-        $(function () {
-            $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
-            $("#datum").datepicker({ minDate: 0, maxDate: "+2M" });
-            $("#datum").datepicker("option", "dateFormat", "DD, d MM, yy");
-            $("#datum").datepicker("option", "showAnim", "drop");
-        });
-    };
+		//DATE PICK
+		$(function () {
+			$.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
+			$("#datum").datepicker({ minDate: 0, maxDate: "+2M" });
+			$("#datum").datepicker("option", "dateFormat", "DD, d MM, yy");
+			$("#datum").datepicker("option", "showAnim", "drop");
+		});
+	};
 
 //EDIT-------------------------------------------------------------------------------------------------
    
-    var editEnable = false;
+	var editEnable = false;
 
-    function Edit() {
-        if (editEnable == true) {
-            EditStuff();
-        }
-        else {
-           selectedError();
-        }
-    };
+	function Edit() {
+		if (editEnable == true) {
+			EditStuff();
+		}
+		else {
+		   selectedError();
+		}
+	};
 
-    function EditStuff() {
-        $.fx.speeds._default = 1000;
-        var $dialog = $('<div></div>')
-        //SADRZAJ DIJALOGA
+	function EditStuff() {
+		$.fx.speeds._default = 1000;
+		var $dialog = $('<div></div>')
+		//SADRZAJ DIJALOGA
 			.html
-            (
-            '<form>' + naslov + opis + slika + datum + pocetak + kraj + '</form>'
-            )
+			(
+			'<form>' + naslov + opis + slika + datum + pocetak + kraj + '</form>'
+			)
 
-        //OPCIJE DIJALOGA
-            .dialog
-            ({
-                autoOpen: false,
-                show: "explode",
-                hide: "explode",
-                title: "Izmeni događaj",
-                modal: true,
-                width: 500,
-                height: 490,
-                buttons:
-                    {
-                        "Izmeni događaj": function () {
-                            Change();
-                            editEnable = false;
-                            deleteEnable = false;
-                            $(this).dialog("close");
-                            $(this).dialog("destroy").remove();
-                        },
-                        "Izađi": function () {
-                            $(this).dialog("close");
-                            $(this).dialog("destroy").remove();
-                        }
-                    }
+		//OPCIJE DIJALOGA
+			.dialog
+			({
+				autoOpen: false,
+				show: "explode",
+				hide: "explode",
+				title: "Izmeni događaj",
+				modal: true,
+				width: 500,
+				height: 490,
+				buttons:
+					{
+						"Izmeni događaj": function () {
+							Change();
+							editEnable = false;
+							deleteEnable = false;
+							$(this).dialog("close");
+							$(this).dialog("destroy").remove();
+						},
+						"Izađi": function () {
+							$(this).dialog("close");
+							$(this).dialog("destroy").remove();
+						}
+					}
 
-            });
+			});
 
-                $dialog.dialog('open');
+				$dialog.dialog('open');
 
-        //DATE PICK***********************************************
-        $(function () {
-            $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
-            $("#datum").datepicker({ minDate: 0, maxDate: "+2M" });
-            $("#datum").datepicker("option", "dateFormat", "DD, d MM, yy");
-            $("#datum").datepicker("option", "showAnim", "drop");
-        });
-        //********************************************************
-        $("#naslov").attr("value", naslovVR);
-        $("#opis").html(opisVR);
-        $("#datum").attr("value", datumVR);
-        $("#pocetak").attr("value", pocetakVR);
-        $("#kra").attr("value", krajVR);
-        $("#slika").attr("src", slikaVR);
-    };
+		//DATE PICK***********************************************
+		$(function () {
+			$.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
+			$("#datum").datepicker({ minDate: 0, maxDate: "+2M" });
+			$("#datum").datepicker("option", "dateFormat", "DD, d MM, yy");
+			$("#datum").datepicker("option", "showAnim", "drop");
+		});
+		//********************************************************
+		$("#naslov").attr("value", naslovVR);
+		$("#opis").html(opisVR);
+		$("#datum").attr("value", datumVR);
+		$("#pocetak").attr("value", pocetakVR);
+		$("#kra").attr("value", krajVR);
+		$("#slika").attr("src", slikaVR);
+	};
 
-    //DELETE-------------------------------------------------------------------------------------------------
-    var deleteEnable = false;
+	//DELETE-------------------------------------------------------------------------------------------------
+	var deleteEnable = false;
 
-    function Delete() {
-        if (deleteEnable == true) {
-            DeleteStuff();
-        }
-        else {
-            selectedError();
-        }
-    };
+	function Delete() {
+		if (deleteEnable == true) {
+			DeleteStuff();
+		}
+		else {
+			selectedError();
+		}
+	};
 
-    function DeleteStuff() {
-        $.fx.speeds._default = 1000;
-        var $dialog = $('<div></div>')
-        //SADRZAJ DIJALOGA
+	function DeleteStuff() {
+		$.fx.speeds._default = 1000;
+		var $dialog = $('<div></div>')
+		//SADRZAJ DIJALOGA
 			.html
-            (
-            '<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Ovaj događaj će biti zauvek obrisan. Jeste li sigurni da želite da ga obrišete?</p>'
-            )
+			(
+			'<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Ovaj događaj će biti zauvek obrisan. Jeste li sigurni da želite da ga obrišete?</p>'
+			)
 
-        //OPCIJE DIJALOGA
-            .dialog
-            ({
-                resizable: false,
-                height: 160,
-                show: "explode",
-                hide: "explode",
-                modal: true,
-                title: "Obriši događaj?",
-                buttons: {
-                    "Obriši događaj": function () {
-                        deleteEnable = false;
-                        editEnable = false;
-                        $(this).dialog("close");
-                        $(this).dialog("destroy").remove();
-                    },
-                    "Izađi": function () {
-                        $(this).dialog("close");
-                        $(this).dialog("destroy").remove();
-                    }
-                }
+		//OPCIJE DIJALOGA
+			.dialog
+			({
+				resizable: false,
+				height: 160,
+				show: "explode",
+				hide: "explode",
+				modal: true,
+				title: "Obriši događaj?",
+				buttons: {
+					"Obriši događaj": function () {
+						deleteEnable = false;
+						editEnable = false;
+						$(this).dialog("close");
+						$(this).dialog("destroy").remove();
+					},
+					"Izađi": function () {
+						$(this).dialog("close");
+						$(this).dialog("destroy").remove();
+					}
+				}
 
-            });
+			});
 
-        $dialog.dialog('open');
-    };
+		$dialog.dialog('open');
+	};
 
 
-    //SELEKTOVANJE-------------------------------------------------------------------------------------------
-    var idGlob;
-    function SelectEvent(id) {
-        idGlob = id;
-        editEnable = true;
-        deleteEnable = true;
-        for (i=1;i<brojEventa;i++)
-        {
-            if (id == i) {
-                $("#" + i).css("background-color", "#34251B");
-                $("#" + i).css("color", "white");
-                $("#" + i).css("border-radius", "15px");
-                $("#" + i).css("box-shadow", "0 0 5px 3px #FC6B11");
+	//SELEKTOVANJE-------------------------------------------------------------------------------------------
+	var idGlob;
+	function SelectEvent(id, count) {
+		idGlob = id;
+		editEnable = true;
+		deleteEnable = true;
+		brojEventa = count;
+		for (i=1;i<=    brojEventa;i++)
+		{
+			if (id == i) {
+				$("#" + i).css("background-color", "#34251B");
+				$("#" + i).css("color", "white");
+				$("#" + i).css("border-radius", "15px");
+				$("#" + i).css("box-shadow", "0 0 5px 3px #FC6B11");
 
-                naslovVR = $("#" + id + " h1").html();
-                opisVR = $("#" + id + " p").html();
-                datumVR = $("#" + id + " em.datum").html();
-                pocetakVR = $("#" + id + " em.poc").html();
-                krajVR = $("#" + id + " em.kraj").html();
-                slikaVR = $("#" + id + " img").attr("src");
-            }
-            else {
-                $("#" + i).css("background-color", "");
-                $("#" + i).css("color", "");
-                $("#" + i).css("border-radius", "");
-                $("#" + i).css("box-shadow", "");
-            }
-        }
-    };
+				naslovVR = $("#" + id + " h1").html();
+				opisVR = $("#" + id + " p").html();
+				datumVR = $("#" + id + " em.datum").html();
+				pocetakVR = $("#" + id + " em.poc").html();
+				krajVR = $("#" + id + " em.kraj").html();
+				slikaVR = $("#" + id + " img").attr("src");
+			}
+			else {
+				$("#" + i).css("background-color", "");
+				$("#" + i).css("color", "");
+				$("#" + i).css("border-radius", "");
+				$("#" + i).css("box-shadow", "");
+			}
+		}
+	};
 
-    //NIJE SELEKTOVAN-------------------------------------------------------------------------------------------
-    function selectedError() {
-        
-        var $dialog = $('<div></div>')
-        //SADRZAJ DIJALOGA
+	//NIJE SELEKTOVAN-------------------------------------------------------------------------------------------
+	function selectedError() {
+		
+		var $dialog = $('<div></div>')
+		//SADRZAJ DIJALOGA
 			.html
-            (
-            '<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Morate prvo da selektujte neki događaj!</p>'
-            )
+			(
+			'<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Morate prvo da selektujte neki događaj!</p>'
+			)
 
-        //OPCIJE DIJALOGA
-            .dialog
-            ({
-                resizable: false,
-                height: 140,
-                show: "explode",
-                hide: "explode",
-                modal: true,
-                title: "Greška!",
-                buttons: {
-                    "Uredu": function () {
-                        $(this).dialog("close");
-                        $(this).dialog("destroy").remove();
-                    }
-                }
-            });
+		//OPCIJE DIJALOGA
+			.dialog
+			({
+				resizable: false,
+				height: 140,
+				show: "explode",
+				hide: "explode",
+				modal: true,
+				title: "Greška!",
+				buttons: {
+					"Uredu": function () {
+						$(this).dialog("close");
+						$(this).dialog("destroy").remove();
+					}
+				}
+			});
 
-        $dialog.dialog('open');
-    }
+		$dialog.dialog('open');
+	}
 
-    //CHANGE EVENT----------------------------------------------------------------------------------
-    function Change() {
-        naslovVR = $("#naslov").attr("value");
-        opisVR = $("#opis").attr("value");
-        datumVR = $("#datum").attr("value");
-        pocetakVR = $("#pocetak").attr("value");
-        krajVR = $("#kra").attr("value");
-        slikaVR = $("#slika").attr("src");
+	//CHANGE EVENT----------------------------------------------------------------------------------
+	function Change() {
+		naslovVR = $("#naslov").attr("value");
+		opisVR = $("#opis").attr("value");
+		datumVR = $("#datum").attr("value");
+		pocetakVR = $("#pocetak").attr("value");
+		krajVR = $("#kra").attr("value");
+		slikaVR = $("#slika").attr("src");
 
-        $("#" + idGlob).css("background-color", "");
-        $("#" + idGlob).css("color", "");
-        $("#" + idGlob).css("border-radius", "");
-        $("#" + idGlob).css("box-shadow", "");
+		$("#" + idGlob).css("background-color", "");
+		$("#" + idGlob).css("color", "");
+		$("#" + idGlob).css("border-radius", "");
+		$("#" + idGlob).css("box-shadow", "");
 
-        $("#" + idGlob + " h1").html(naslovVR);
-        $("#" + idGlob + " p").html(opisVR);
-        $("#" + idGlob + " em.datum").html(datumVR);
-        $("#" + idGlob + " em.poc").html(pocetakVR);
-        $("#" + idGlob + " em.kraj").html(krajVR);
-        $("#" + idGlob + " img").attr("src", slikaVR);
-    };
+		$("#" + idGlob + " h1").html(naslovVR);
+		$("#" + idGlob + " p").html(opisVR);
+		$("#" + idGlob + " em.datum").html(datumVR);
+		$("#" + idGlob + " em.poc").html(pocetakVR);
+		$("#" + idGlob + " em.kraj").html(krajVR);
+		$("#" + idGlob + " img").attr("src", slikaVR);
+	};
 
 
-    //CHANGE IMAGE------------------------------------------------------------------------------------
-    function ChangeImage() {
-        $(this).dialog("close");
+	//CHANGE IMAGE------------------------------------------------------------------------------------
+	function ChangeImage() {
+		$(this).dialog("close");
 
-        $.fx.speeds._default = 1000;
-        var $dialog = $('<div></div>')
-        //SADRZAJ DIJALOGA
+		$.fx.speeds._default = 1000;
+		var $dialog = $('<div></div>')
+		//SADRZAJ DIJALOGA
 			.html
-            (
-            slika1 + slika2 + slika3 + slika4 + slika5 + slika6 + slika7 + slika8 + slika9 + slika10
-            )
+			(
+			slika1 + slika2 + slika3 + slika4 + slika5 + slika6 + slika7 + slika8 + slika9 + slika10
+			)
 
-        //OPCIJE DIJALOGA
-            .dialog
-            ({
-                resizable: false,
-                modal: true,
-                title: "Izaberite sliku",
-                width: 450,
-                buttons: {
-                    "Izaberi": function () {
-                        $(this).dialog("close");
-                        $(this).dialog("destroy").remove();
-                    },
-                    "Izađi": function () {
-                        $(this).dialog("close");
+		//OPCIJE DIJALOGA
+			.dialog
+			({
+				resizable: false,
+				modal: true,
+				title: "Izaberite sliku",
+				width: 450,
+				buttons: {
+					"Izaberi": function () {
+						$(this).dialog("close");
+						$(this).dialog("destroy").remove();
+					},
+					"Izađi": function () {
+						$(this).dialog("close");
 
-                    }
-                }
+					}
+				}
 
-            });
+			});
 
-        $dialog.dialog('open');
+		$dialog.dialog('open');
 
-    };
+	};
 
-    //CHOSE IMAGE---------------------------------------------------------------------------------
+	//CHOSE IMAGE---------------------------------------------------------------------------------
 
-    function ChoseImage(id) {
-        for (i=1;i<11;i++)
-        {
-            if (id == i) {
-                $("#" + "img" + i).css("background-color", "#34251B");
-                $("#" + "img" + i).css("border-radius", "15px");
-                $("#" + "img" + i).css("box-shadow", "0 0 5px 5px #FC6B11");
+	function ChoseImage(id) {
+		for (i=1;i<11;i++)
+		{
+			if (id == i) {
+				$("#" + "img" + i).css("background-color", "#34251B");
+				$("#" + "img" + i).css("border-radius", "15px");
+				$("#" + "img" + i).css("box-shadow", "0 0 5px 5px #FC6B11");
 
-                slikaVR = $("#" + "img" + id).attr("src");
-                $("#slika").attr("src", slikaVR);
-            }
-            else {
-                $("#" + "img" + i).css("background-color", "");
-                $("#" + "img" + i).css("border-radius", "");
-                $("#" + "img" + i).css("box-shadow", "");
-            }
-        }
-    };
+				slikaVR = $("#" + "img" + id).attr("src");
+				$("#slika").attr("src", slikaVR);
+			}
+			else {
+				$("#" + "img" + i).css("background-color", "");
+				$("#" + "img" + i).css("border-radius", "");
+				$("#" + "img" + i).css("box-shadow", "");
+			}
+		}
+	};

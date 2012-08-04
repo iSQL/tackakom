@@ -1,78 +1,41 @@
-﻿@model IEnumerable<Tackakom.Model.Event>
+﻿@using Tackakom.UserInterface.Helpers
+@model IEnumerable<Tackakom.Model.Event>
 
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
+	<h1>@ViewBag.endOfList</h1>
 }
 
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+	@Html.ActionLink("Create New", "Create")
 </p>
-<table style="border-style: double; width:100%">
-    <tr>
-        <th>
-            CreateTime
-        </th>
-        <th>
-            StartDate
-        </th>
-        <th>
-            EndDate
-        </th>
-        <th>
-            Title
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            Entry
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreateTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Entry)
-        </td>
-        <td>
-             @Html.DisplayFor(modelItem => item.EventCategory)
-        </td>
-    </tr>
-}
+<div id="event-list">
+    @{int i = 0;}
+    @foreach (var item in Model) {
+		
+     i = i + 1;
+     @Html.Event(i, item, Model.Count());
+    }
+</div>
 
-</table>
 
 @section Menu {
 		<div class="button">
 		<img src="../../Content/Slike/Button-Add-icon.png" />
-        <img src="../../Content/Slike/Button-Delete-icon.png" />
-        <img src="../../Content/Slike/Button-Edit-icon.png" />
+		<img src="../../Content/Slike/Button-Delete-icon.png" />
+		<img src="../../Content/Slike/Button-Edit-icon.png" />
 		</div>
 }
 @section Footer {
 	<div id="social">
-	    <div id="share">
-            <img src="../../Content/Slike/facebook.png" />
-            <img src="../../Content/Slike/gplus.png" />
-            <img src="../../Content/Slike/twitter.png" />
-	    </div>
-    </div>
+		<div id="share">
+			<img src="../../Content/Slike/facebook.png" />
+			<img src="../../Content/Slike/gplus.png" />
+			<img src="../../Content/Slike/twitter.png" />
+		</div>
+	</div>
 }
+

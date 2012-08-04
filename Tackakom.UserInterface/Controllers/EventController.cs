@@ -17,9 +17,25 @@ namespace Tackakom.UserInterface.Controllers
         //
         // GET: /Event/
 
-        public ViewResult Index()
+
+        public ActionResult Index(int page = 1)
         {
-            return View(db.Events.ToList());
+            //int page = pages.GetValueOrDefault(1);
+            var total = db.Events.Select(p => p.Id).Count();
+            int pageSize = 2;
+            var skip = pageSize * (page - 1);
+            bool canPage = skip < total;
+            if (!canPage) //Ako stigne do kraja
+            { 
+                return RedirectToAction("Index", new { page = 1 });
+            }
+
+            List<Event> eventi = db.Events
+                .OrderBy(x=>x.CreateTime)
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+            return View(eventi);
         }
 
         //

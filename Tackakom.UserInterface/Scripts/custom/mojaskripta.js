@@ -195,7 +195,7 @@ function AddStuff() {
 		editEnable = true;
 		deleteEnable = true;
 		brojEventa = count;
-		for (i=1;i<=    brojEventa;i++)
+		for (i=1; i <= brojEventa;i++)
 		{
 			if (id == i) {
 				$("#" + i).css("background-color", "#34251B");

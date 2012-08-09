@@ -76,6 +76,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\EventHelper.cs" />
+    <Compile Include="Helpers\Pagination.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -198,6 +199,7 @@
     <Content Include="Content\themes\sunny\jquery.ui.tabs.css" />
     <Content Include="Content\themes\sunny\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
+    <Content Include="Helpers\Pagination.xml" />
     <Content Include="Scripts\custom\mojaskripta.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />

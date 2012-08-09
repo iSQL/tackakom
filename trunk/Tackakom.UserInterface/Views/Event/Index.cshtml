@@ -20,6 +20,10 @@
      @Html.Event(i, item, Model.Count());
     }
 </div>
+@if ((string)ViewData["pageLinks"] != "") { 
+   @Html.Raw(ViewData["pageLinks"].ToString())
+   <br /><br />
+    }
 
 
 @section Menu {

@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Tackakom.Model;
 using Tackakom.Repository;
 
@@ -35,16 +36,29 @@ namespace Tackakom.UserInterface.Controllers
         // GET: /Host/Create
 
         public ActionResult Create()
-        {
-            return View();
+
+        {     
+                return View();
         } 
 
         //
         // POST: /Host/Create
 
-        [HttpPost]
+        [HttpPost][Authorize]
         public ActionResult Create(Host host)
         {
+            //Vezivanje Guid-a usera za host userId
+            var membershipUser = Membership.GetUser();
+            if (membershipUser != null)
+            {
+                var providerUserKey = membershipUser.ProviderUserKey;
+                if (providerUserKey != null)
+                {
+                    var guid = (Guid)providerUserKey;
+                    host.UserID = guid;
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 db.Hosts.Add(host);

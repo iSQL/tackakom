@@ -45,15 +45,6 @@
             @Html.EditorFor(model => model.Address)
             @Html.ValidationMessageFor(model => model.Address)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.UserID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UserID)
-            @Html.ValidationMessageFor(model => model.UserID)
-        </div>
-
         <p>
             <input type="submit" value="Create" />
         </p>
@@ -63,3 +54,16 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Menu {
+		
+}
+@section Footer {
+	<div id="social">
+	    <div id="share">
+            <img src="../../Content/Slike/facebook.png" />
+            <img src="../../Content/Slike/gplus.png" />
+            <img src="../../Content/Slike/twitter.png" />
+	    </div>
+    </div>
+}

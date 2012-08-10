@@ -1,25 +1,25 @@
 ﻿@model Tackakom.UserInterface.Models.RegisterModel
 
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Registrovanje";
 }
 
-<h2>Create a New Account</h2>
+<h2>Kreiranje novog naloga</h2>
 <p>
-    Use the form below to create a new account. 
+    Popunite podatke. 
 </p>
 <p>
-    Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length.
+    Šifra mora da ima najmanje @Membership.MinRequiredPasswordLength karaktera.
 </p>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
 @using (Html.BeginForm()) {
-    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+    @Html.ValidationSummary(true, "Pokušaj ponovo, doživeo si grešku.")
     <div>
         <fieldset>
-            <legend>Account Information</legend>
+            <legend>Nalog</legend>
 
             <div class="editor-label">
                 @Html.LabelFor(m => m.UserName)
@@ -54,25 +54,15 @@
             </div>
 
             <p>
-                <input type="submit" value="Register" />
+                <input type="submit" value="Registracija" />
             </p>
         </fieldset>
     </div>
 }
 
 @section Menu {
-		<div class="button">
-        <div onclick="AddStuff()" id="btn1"></div>
-        <div onclick="Edit()" id="btn2"></div>
-        <div onclick="Delete()" id="btn3"></div>
-		</div>
+	
 }
 @section Footer {
-	<div id="social">
-	    <div id="share">
-            <img src="../../Content/Slike/Ikonice/woodSoc/facebook.png" />
-            <img src="../../Content/Slike/Ikonice/woodSoc/googleplus.png" />
-            <img src="../../Content/Slike/Ikonice/woodSoc/twitter.png" />
-	    </div>
-    </div>
+
 }

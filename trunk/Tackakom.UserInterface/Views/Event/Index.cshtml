@@ -2,15 +2,12 @@
 @model IEnumerable<Tackakom.Model.Event>
 
 @{
-	ViewBag.Title = "Index";
-	<h1>@ViewBag.endOfList</h1>
+	ViewBag.Title = "Početna";
+	
 }
 
-<h2>Index</h2>
+<h2>Lista eventa</h2>
 
-<p>
-	@Html.ActionLink("Create New", "Create")
-</p>
 
 <div id="event-list">
     @{int i = 0;}
@@ -26,11 +23,6 @@
     }
 
 @section Menu {
-		<div class="button">
-        <div onclick="AddStuff()" id="btn1"></div>
-        <div onclick="Edit()" id="btn2"></div>
-        <div onclick="Delete()" id="btn3"></div>
-		</div>
 }
 
 @section Footer {

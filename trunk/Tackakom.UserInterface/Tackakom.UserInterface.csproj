@@ -385,6 +385,7 @@
     <Content Include="Views\Host\Details.cshtml" />
     <Content Include="Views\Host\Edit.cshtml" />
     <Content Include="Views\Host\Index.cshtml" />
+    <Content Include="Views\Event\Editing.cshtml" />
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />

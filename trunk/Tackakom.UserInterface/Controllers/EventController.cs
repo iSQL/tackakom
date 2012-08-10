@@ -18,18 +18,13 @@ namespace Tackakom.UserInterface.Controllers
         //
         // GET: /Event/
 
+        
         public ActionResult Index(int page = 1)
         {
             //int page = pages.GetValueOrDefault(1);
             var total = db.Events.Select(p => p.Id).Count();
             const int pageSize = 4;
             var skip = pageSize * (page - 1);
-            bool canPage = skip < total;
-            if (!canPage) //Ako stigne do kraja
-            {
-                return RedirectToAction("Index", new { page = 1 });
-            }
-
             //popunjavanje liste sa modelima
             List<Event> eventi = db.Events
                 .OrderBy(x => x.CreateTime)
@@ -40,6 +35,32 @@ namespace Tackakom.UserInterface.Controllers
             Pagination pagination = new Pagination();
 
             pagination.BaseUrl = "/eventlist/";
+            pagination.TotalRows = total;
+            pagination.CurPage = page;
+            pagination.PerPage = pageSize;
+
+            string pageLinks = pagination.GetPageLinks();
+            ViewData["pageLinks"] = pageLinks;
+            return View(eventi);
+        }
+
+        [Authorize]
+        public ActionResult Editing(int page = 1)
+        {
+            //int page = pages.GetValueOrDefault(1);
+            var total = db.Events.Select(p => p.Id).Count();
+            const int pageSize = 4;
+            var skip = pageSize * (page - 1);
+            //popunjavanje liste sa modelima
+            List<Event> eventi = db.Events
+                .OrderBy(x => x.CreateTime)
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+
+            Pagination pagination = new Pagination();
+
+            pagination.BaseUrl = "Event/Edit/";
             pagination.TotalRows = total;
             pagination.CurPage = page;
             pagination.PerPage = pageSize;

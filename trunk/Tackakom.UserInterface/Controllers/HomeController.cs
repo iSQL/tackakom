@@ -13,9 +13,6 @@ namespace Tackakom.UserInterface.Controllers
         
         public ActionResult Index()
         {
-            //System.Web.HttpContext.Current.User.Identity.
-            //Guid guid = (Guid)Membership.GetUser().ProviderUserKey;
-            //ViewBag.Message = "Welcome to ASP.NET MVC!";
             return RedirectToAction("Index","Event", new { page = 1 });
             //return View();
         }

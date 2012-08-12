@@ -102,6 +102,20 @@ namespace Tackakom.UserInterface.Controllers
 
             return View(_event);
         }
+
+        [HttpPost]
+        public ActionResult Save(Event _event)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                db.Events.Add(_event);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+        }
         
         //
         // GET: /Event/Edit/5

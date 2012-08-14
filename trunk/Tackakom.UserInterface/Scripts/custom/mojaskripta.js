@@ -15,14 +15,14 @@ function getEvent() {
     return (naslovVR == "") ? null : { 
         Title: naslovVR,
         Description: opisVR,
-        CreateTime: datumVR,
-        StartDate: pocetakVR,
-        EndDate: krajVR,
-        Entry: "Slobodno",
-        Host: "1",
-        EventCategories: "2"    
+        CreateTime: "6/4/2009",
+        StartDate: "6/4/2009",
+        EndDate: "6/4/2009",
+        Entry: "Slobodno",  
+        EventCategory: { Id: 1 }    
     };
 }
+
 
 
 var naslovVR = "";

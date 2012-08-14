@@ -50,7 +50,10 @@ namespace Tackakom.UserInterface.Helpers
 
 
             span.InnerHtml = emVreme.ToString(TagRenderMode.Normal) + emOd.ToString(TagRenderMode.Normal) + emDo.ToString(TagRenderMode.Normal);
-            
+
+            var eventId = new TagBuilder("Input");
+            eventId.MergeAttribute("type", "hidden");
+            eventId.MergeAttribute("value", _event.Id.ToString());
 
             
             var stringBuilder = new System.Text.StringBuilder();
@@ -61,6 +64,7 @@ namespace Tackakom.UserInterface.Helpers
             stringBuilder.Append(span.ToString(TagRenderMode.Normal));
             stringBuilder.Append(host.ToString(TagRenderMode.Normal));
             stringBuilder.Append(entry.ToString(TagRenderMode.Normal));
+            stringBuilder.Append(eventId.ToString(TagRenderMode.Normal));
             stringBuilder.Append(article.ToString(TagRenderMode.EndTag));
 
 

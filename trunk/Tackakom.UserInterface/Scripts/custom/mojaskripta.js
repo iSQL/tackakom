@@ -7,8 +7,21 @@ var kraj = '<input type="text" name="kra" id="kra" placeholder="Vreme kraja..." 
 var slika = '<img onclick="ChangeImage()" id="slika" src="../../Content/Slike/izaberi.jpg" />';
 
 function getEvent() {
-    var title = "naslov";
-    return (title == "") ? null : { Title: title, Description: opisVR, CreateTime: datumVR, StartDate: pocetakVR, EndDate: krajVR };
+    naslovVR = $("#naslov").attr("value");
+    opisVR = $("#opis").attr("value");
+    datumVR = $("#datum").attr("value");
+    pocetakVR = $("#pocetak").attr("value");
+    krajVR = $("#kra").attr("value");
+    return (naslovVR == "") ? null : { 
+        Title: naslovVR,
+        Description: opisVR,
+        CreateTime: datumVR,
+        StartDate: pocetakVR,
+        EndDate: krajVR,
+        Entry: "Slobodno",
+        Host: "1",
+        EventCategories: "2"    
+    };
 }
 
 
@@ -54,6 +67,7 @@ function AddStuff() {
 			    buttons:
 					{
 					    "Dodaj događaj": function () {
+					        
 					        var event = getEvent();
 					        if (event == null) {
 					            alert("Upisi ime dogadjaja");
@@ -216,8 +230,8 @@ function AddStuff() {
 		idGlob = id;
 		editEnable = true;
 		deleteEnable = true;
-		brojEventa = count;
-		for (i=1; i <= brojEventa;i++)
+		var brojEventa = count;
+		for (var i=1; i <= brojEventa;i++)
 		{
 			if (id == i) {
 				$("#" + i).css("background-color", "#34251B");
@@ -333,7 +347,7 @@ function AddStuff() {
 	//CHOSE IMAGE---------------------------------------------------------------------------------
 
 	function ChoseImage(id) {
-		for (i=1;i<11;i++)
+		for (var i=1;i<11;i++)
 		{
 			if (id == i) {
 				$("#" + "img" + i).css("background-color", "#34251B");

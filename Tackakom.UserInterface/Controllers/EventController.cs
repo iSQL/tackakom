@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Tackakom.Model;
 using Tackakom.Repository;
 using Valentica.Libraries;
@@ -13,8 +14,7 @@ namespace Tackakom.UserInterface.Controllers
 { 
     public class EventController : Controller
     {
-        private DbTackakom db = new DbTackakom();
-
+        private DbTackakom db = new DbTackakom();  
         //
         // GET: /Event/
 
@@ -105,8 +105,18 @@ namespace Tackakom.UserInterface.Controllers
 
         [HttpPost]
         public ActionResult Save(Event _event)
-        {
+        {  var membershipUser = Membership.GetUser();
+            if (membershipUser != null)
+            {
+                var providerUserKey = membershipUser.ProviderUserKey;
+                if (providerUserKey != null)
+                {
+                    _event.Host = db.Hosts.Single(host => host.UserID.Equals((Guid) providerUserKey));
+                }
+            }
+            _event.EventCategory = db.EventCategories.Single(r => r.Id.Equals(1));
             
+            //ModelState[]
             if (ModelState.IsValid)
             {
                 db.Events.Add(_event);

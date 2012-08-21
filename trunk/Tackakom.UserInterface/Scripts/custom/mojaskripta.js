@@ -94,20 +94,21 @@ function AddStuff() {
 					            return;
 					        }
 					        var json = $.toJSON(event);
-					            $.ajax({
-					                url: '/Event/Save',
-					                type: 'POST',
-					                dataType: 'json',
-					                data: json,
-					                contentType: 'application/json; charset=utf-8',
-					                success: function (data) {
-					                    var message = data.Message;
-					                    //$("#obavestenje").html(message);
-					                    alert(message);
-					                }
-					            });
+					        $.ajax({
+					            url: '/Event/Save',
+					            type: 'POST',
+					            dataType: 'json',
+					            data: json,
+					            contentType: 'application/json; charset=utf-8',
+					            success: function (data) {
+					                var message = data.Message;
+					                //$("#obavestenje").html(message);
+					                alert(message);
+					            }
+					        });
 					        $(this).dialog("close");
 					        $(this).dialog("destroy").remove();
+					        location.reload();
 					    },
 					    "Izađi": function () {
 					        $(this).dialog("close");
@@ -188,6 +189,7 @@ function AddStuff() {
 							deleteEnable = false;
 							$(this).dialog("close");
 							$(this).dialog("destroy").remove();
+							location.reload();
 						},
 						"Izađi": function () {
 							$(this).dialog("close");

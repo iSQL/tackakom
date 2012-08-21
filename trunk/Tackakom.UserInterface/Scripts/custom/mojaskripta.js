@@ -19,10 +19,29 @@ function getEvent() {
 		CreateTime: "6/4/2009",
 		StartDate: "6/4/2009",
 		EndDate: "6/4/2009",
-		Entry: "Slobodno",  
-		EventCategory: { Id: 1 }    
+		Entry: "Slobodno",
+		EventCategory: { Id: categoryId }    
 	};
 }
+function getEventForEdit() {
+    naslovVR = $("#naslov").attr("value");
+    opisVR = $("#opis").attr("value");
+    datumVR = $("#datum").attr("value");
+    pocetakVR = $("#pocetak").attr("value");
+    krajVR = $("#kra").attr("value");
+    return (naslovVR == "") ? null : {
+        Id: uniqueEventId,
+        Title: naslovVR,
+        Description: opisVR,
+        CreateTime: "6/4/2009",
+        StartDate: "6/4/2009",
+        EndDate: "6/4/2009",
+        Entry: "Slobodno",
+        EventCategory: { Id: categoryId }
+        
+    };
+}
+
 
 
 
@@ -32,19 +51,17 @@ var datumVR = "";
 var pocetakVR = "";
 var krajVR = "";
 var slikaVR = "";
-//ovo mi je potrebno kako bih odredio kategorije. Dodaj u svaku sliku i svuda value, ili alt koji ce da sadzi ovaj slikaId
-var slikaId = "";
 
 var slika1 = '<img onclick="ChoseImage(1)" id="img1" class = "slika" src="../../Content/Slike/Ikonice/kockaste/fingerfocus.png" value="1" />';
 var slika2 = '<img onclick="ChoseImage(2)" id="img2" class = "slika" src="../../Content/Slike/Ikonice/kockaste/fxphotostudio.png" value="2" />';
 var slika3 = '<img onclick="ChoseImage(3)" id="img3" class = "slika" src="../../Content/Slike/Ikonice/kockaste/halftone.png" value="3"/>';
-var slika4 = '<img onclick="ChoseImage(4)" id="img4" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lens.png" value="4"/>';
-var slika5 = '<img onclick="ChoseImage(5)" id="img5" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lithogram.png" value="5"/>';
-var slika6 = '<img onclick="ChoseImage(6)" id="img6" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pano.png" value="6"/>';
-var slika7 = '<img onclick="ChoseImage(7)" id="img7" class = "slika" src="../../Content/Slike/Ikonice/kockaste/perfectphoto.png" value="7"/>';
-var slika8 = '<img onclick="ChoseImage(8)" id="img8" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pixrl.png" value="8"/>';
-var slika9 = '<img onclick="ChoseImage(9)" id="img9" class = "slika" src="../../Content/Slike/Ikonice/kockaste/photosynth.png" value="9"/>';
-var slika10 = '<img onclick="ChoseImage(10)" id="img10" class = "slika" src="../../Content/Slike/Ikonice/kockaste/wordfoto.png" value="1"/>';
+var slika4 = '<img onclick="ChoseImage(4)" id="img4" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lens.png" value="8"/>';
+var slika5 = '<img onclick="ChoseImage(5)" id="img5" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lithogram.png" value="9"/>';
+var slika6 = '<img onclick="ChoseImage(6)" id="img6" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pano.png" value="10"/>';
+var slika7 = '<img onclick="ChoseImage(7)" id="img7" class = "slika" src="../../Content/Slike/Ikonice/kockaste/perfectphoto.png" value="11"/>';
+var slika8 = '<img onclick="ChoseImage(8)" id="img8" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pixrl.png" value="12"/>';
+var slika9 = '<img onclick="ChoseImage(9)" id="img9" class = "slika" src="../../Content/Slike/Ikonice/kockaste/photosynth.png" value="13"/>';
+var slika10 = '<img onclick="ChoseImage(10)" id="img10" class = "slika" src="../../Content/Slike/Ikonice/kockaste/wordfoto.png" value="7"/>';
 
 
 //DODAJ NOVI------------------------------------------------------------------------------------------------
@@ -77,17 +94,18 @@ function AddStuff() {
 					            return;
 					        }
 					        var json = $.toJSON(event);
-					        $.ajax({
-					            url: '/Event/Save',
-					            type: 'POST',
-					            dataType: 'json',
-					            data: json,
-					            contentType: 'application/json; charset=utf-8',
-					            success: function (data) {
-					                var message = data.Message;
-					                //$("#obavestenje").html(message);
-					            }
-					        });
+					            $.ajax({
+					                url: '/Event/Save',
+					                type: 'POST',
+					                dataType: 'json',
+					                data: json,
+					                contentType: 'application/json; charset=utf-8',
+					                success: function (data) {
+					                    var message = data.Message;
+					                    //$("#obavestenje").html(message);
+					                    alert(message);
+					                }
+					            });
 					        $(this).dialog("close");
 					        $(this).dialog("destroy").remove();
 					    },
@@ -117,7 +135,7 @@ function AddStuff() {
 
 	function Edit() {
 		if (editEnable == true) {
-			EditStuff();
+		    EditStuff();   
 		}
 		else {
 		   selectedError();
@@ -146,7 +164,26 @@ function AddStuff() {
 				buttons:
 					{
 						"Izmeni događaj": function () {
-							Change();
+						    Change();
+						        var event = getEventForEdit();
+						        if (event == null) {
+						            alert("Upisi ime dogadjaja");
+						            return;
+						        }
+						        var json = $.toJSON(event);
+
+						        $.ajax({
+						            url: '/Event/Edit',
+						            type: 'POST',
+						            dataType: 'json',
+						            data: json,
+						            contentType: 'application/json; charset=utf-8',
+						            success: function (data) {
+						                var message = data.Message;
+						                //$("#obavestenje").html(message);
+						                alert(message);
+						            }
+						        });
 							editEnable = false;
 							deleteEnable = false;
 							$(this).dialog("close");
@@ -182,7 +219,7 @@ function AddStuff() {
 	var deleteEnable = false;
 
 	function Delete() {
-		if (deleteEnable == true) {
+	    if (deleteEnable == true) {
 			DeleteStuff();
 		}
 		else {
@@ -202,24 +239,40 @@ function AddStuff() {
 		//OPCIJE DIJALOGA
 			.dialog
 			({
-				resizable: false,
-				height: 160,
-				show: "explode",
-				hide: "explode",
-				modal: true,
-				title: "Obriši događaj?",
-				buttons: {
-					"Obriši događaj": function () {
-						deleteEnable = false;
-						editEnable = false;
-						$(this).dialog("close");
-						$(this).dialog("destroy").remove();
-					},
-					"Izađi": function () {
-						$(this).dialog("close");
-						$(this).dialog("destroy").remove();
-					}
-				}
+			    resizable: false,
+			    height: 160,
+			    show: "explode",
+			    hide: "explode",
+			    modal: true,
+			    title: "Obriši događaj?",
+			    buttons: {
+			        "Obriši događaj": function () {
+			            
+			            
+			            var json = $.toJSON({Id:uniqueEventId});
+			            alert(json);
+			            $.ajax({
+			                url: '/Event/Brisanje',
+			                type: 'POST',
+			                dataType: 'json',
+			                data: json,
+			                contentType: 'application/json; charset=utf-8',
+			                success: function (data) {
+			                    var message = data.Message;
+			                    //$("#obavestenje").html(message);
+			                    alert(message);
+			                }
+			            });
+			            deleteEnable = false;
+			            editEnable = false;
+			            $(this).dialog("close");
+			            $(this).dialog("destroy").remove();
+			        },
+			        "Izađi": function () {
+			            $(this).dialog("close");
+			            $(this).dialog("destroy").remove();
+			        }
+			    }
 
 			});
 

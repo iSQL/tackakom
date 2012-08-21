@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Objects;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -60,7 +61,7 @@ namespace Tackakom.UserInterface.Controllers
 
             Pagination pagination = new Pagination();
 
-            pagination.BaseUrl = "Event/Edit/";
+            pagination.BaseUrl = "/editing/";
             pagination.TotalRows = total;
             pagination.CurPage = page;
             pagination.PerPage = pageSize;
@@ -70,38 +71,13 @@ namespace Tackakom.UserInterface.Controllers
             return View(eventi);
         }
 
-        //
-        // GET: /Event/Details/5
-
+        //Single
         public ViewResult Details(int id)
         {
             Event _event = db.Events.Find(id);
             return View(_event);
         }
 
-        //
-        // GET: /Event/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        } 
-
-        //
-        // POST: /Event/Create
-
-        [HttpPost]
-        public ActionResult Create(Event _event)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Events.Add(_event);
-                db.SaveChanges();
-                return RedirectToAction("Index");  
-            }
-
-            return View(_event);
-        }
 
         [HttpPost]
         public ActionResult Save(Event _event)
@@ -111,10 +87,12 @@ namespace Tackakom.UserInterface.Controllers
                 var providerUserKey = membershipUser.ProviderUserKey;
                 if (providerUserKey != null)
                 {
+                    //Za hosta ubaci trenutnog hosta
                     _event.Host = db.Hosts.Single(host => host.UserID.Equals((Guid) providerUserKey));
                 }
             }
-            _event.EventCategory = db.EventCategories.Single(r => r.Id.Equals(1));
+            //Pronadji kategoriju sa zadatim ID
+            _event.EventCategory = db.EventCategories.Single(r => r.Id.Equals(_event.EventCategory.Id));
             
             //ModelState[]
             if (ModelState.IsValid)
@@ -126,51 +104,56 @@ namespace Tackakom.UserInterface.Controllers
 
             return RedirectToAction("Index");
         }
-        
-        //
-        // GET: /Event/Edit/5
- 
-        public ActionResult Edit(int id)
+
+        [HttpPost]
+        public ActionResult Brisanje(int id)
         {
             Event _event = db.Events.Find(id);
-            return View(_event);
+            db.Events.Remove(_event);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
-        //
-        // POST: /Event/Edit/5
-
+        //Edit
         [HttpPost]
         public ActionResult Edit(Event _event)
         {
+            var membershipUser = Membership.GetUser();
+            if (membershipUser != null)
+            {
+                var providerUserKey = membershipUser.ProviderUserKey;
+                if (providerUserKey != null)
+                {
+                    //Za hosta ubaci trenutnog hosta
+                    _event.Host = db.Hosts.Single(host => host.UserID.Equals((Guid)providerUserKey));
+                }
+            }
+            //Pronadji kategoriju sa zadatim ID
+            _event.EventCategory = db.EventCategories.Single(r => r.Id.Equals(_event.EventCategory.Id));
+
             if (ModelState.IsValid)
             {
-                db.Entry(_event).State = EntityState.Modified;
+                Event _eventTemp = db.Events.Find(_event.Id);
+                db.Events.Remove(_eventTemp);
+                db.Events.Add(_event);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(_event);
         }
 
-        //
-        // GET: /Event/Delete/5
- 
+
+        //Brisanje
+        //todo: Host moze da brise samo svoje evente
+        [HttpPost]
         public ActionResult Delete(int id)
-        {
-            Event _event = db.Events.Find(id);
-            return View(_event);
-        }
-
-        //
-        // POST: /Event/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
         {            
             Event _event = db.Events.Find(id);
             db.Events.Remove(_event);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

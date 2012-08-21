@@ -1,4 +1,5 @@
-
+var categoryId = "0";
+var uniqueEventId = null;
 var naslov = '<input type="text" name="naslov" id="naslov" placeholder="Naslov događaja..." class="text ui-widget-content ui-corner-all" /> <br/> <br/>';
 var opis = '<textarea id="opis" placeholder="Opis događaja..." class="text ui-widget-content ui-corner-all"></textarea><br/><br/>';
 var datum = '<input type="text" name="datum" id="datum" class="text ui-widget-content ui-corner-all" placeholder="Izaberite datum..." /> <br/> <br/>';
@@ -7,20 +8,20 @@ var kraj = '<input type="text" name="kra" id="kra" placeholder="Vreme kraja..." 
 var slika = '<img onclick="ChangeImage()" id="slika" src="../../Content/Slike/izaberi.jpg" />';
 
 function getEvent() {
-    naslovVR = $("#naslov").attr("value");
-    opisVR = $("#opis").attr("value");
-    datumVR = $("#datum").attr("value");
-    pocetakVR = $("#pocetak").attr("value");
-    krajVR = $("#kra").attr("value");
-    return (naslovVR == "") ? null : { 
-        Title: naslovVR,
-        Description: opisVR,
-        CreateTime: "6/4/2009",
-        StartDate: "6/4/2009",
-        EndDate: "6/4/2009",
-        Entry: "Slobodno",  
-        EventCategory: { Id: 1 }    
-    };
+	naslovVR = $("#naslov").attr("value");
+	opisVR = $("#opis").attr("value");
+	datumVR = $("#datum").attr("value");
+	pocetakVR = $("#pocetak").attr("value");
+	krajVR = $("#kra").attr("value");
+	return (naslovVR == "") ? null : { 
+		Title: naslovVR,
+		Description: opisVR,
+		CreateTime: "6/4/2009",
+		StartDate: "6/4/2009",
+		EndDate: "6/4/2009",
+		Entry: "Slobodno",  
+		EventCategory: { Id: 1 }    
+	};
 }
 
 
@@ -31,17 +32,19 @@ var datumVR = "";
 var pocetakVR = "";
 var krajVR = "";
 var slikaVR = "";
+//ovo mi je potrebno kako bih odredio kategorije. Dodaj u svaku sliku i svuda value, ili alt koji ce da sadzi ovaj slikaId
+var slikaId = "";
 
-var slika1 = '<img onclick="ChoseImage(1)" id="img1" class = "slika" src="../../Content/Slike/Ikonice/kockaste/fingerfocus.png" />';
-var slika2 = '<img onclick="ChoseImage(2)" id="img2" class = "slika" src="../../Content/Slike/Ikonice/kockaste/fxphotostudio.png" />';
-var slika3 = '<img onclick="ChoseImage(3)" id="img3" class = "slika" src="../../Content/Slike/Ikonice/kockaste/halftone.png" />';
-var slika4 = '<img onclick="ChoseImage(4)" id="img4" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lens.png" />';
-var slika5 = '<img onclick="ChoseImage(5)" id="img5" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lithogram.png" />';
-var slika6 = '<img onclick="ChoseImage(6)" id="img6" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pano.png" />';
-var slika7 = '<img onclick="ChoseImage(7)" id="img7" class = "slika" src="../../Content/Slike/Ikonice/kockaste/perfectphoto.png" />';
-var slika8 = '<img onclick="ChoseImage(8)" id="img8" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pixrl.png" />';
-var slika9 = '<img onclick="ChoseImage(9)" id="img9" class = "slika" src="../../Content/Slike/Ikonice/kockaste/photosynth.png" />';
-var slika10 = '<img onclick="ChoseImage(10)" id="img10" class = "slika" src="../../Content/Slike/Ikonice/kockaste/wordfoto.png" />';
+var slika1 = '<img onclick="ChoseImage(1)" id="img1" class = "slika" src="../../Content/Slike/Ikonice/kockaste/fingerfocus.png" value="1" />';
+var slika2 = '<img onclick="ChoseImage(2)" id="img2" class = "slika" src="../../Content/Slike/Ikonice/kockaste/fxphotostudio.png" value="2" />';
+var slika3 = '<img onclick="ChoseImage(3)" id="img3" class = "slika" src="../../Content/Slike/Ikonice/kockaste/halftone.png" value="3"/>';
+var slika4 = '<img onclick="ChoseImage(4)" id="img4" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lens.png" value="4"/>';
+var slika5 = '<img onclick="ChoseImage(5)" id="img5" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lithogram.png" value="5"/>';
+var slika6 = '<img onclick="ChoseImage(6)" id="img6" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pano.png" value="6"/>';
+var slika7 = '<img onclick="ChoseImage(7)" id="img7" class = "slika" src="../../Content/Slike/Ikonice/kockaste/perfectphoto.png" value="7"/>';
+var slika8 = '<img onclick="ChoseImage(8)" id="img8" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pixrl.png" value="8"/>';
+var slika9 = '<img onclick="ChoseImage(9)" id="img9" class = "slika" src="../../Content/Slike/Ikonice/kockaste/photosynth.png" value="9"/>';
+var slika10 = '<img onclick="ChoseImage(10)" id="img10" class = "slika" src="../../Content/Slike/Ikonice/kockaste/wordfoto.png" value="1"/>';
 
 
 //DODAJ NOVI------------------------------------------------------------------------------------------------
@@ -67,7 +70,7 @@ function AddStuff() {
 			    buttons:
 					{
 					    "Dodaj događaj": function () {
-					        
+
 					        var event = getEvent();
 					        if (event == null) {
 					            alert("Upisi ime dogadjaja");
@@ -227,7 +230,7 @@ function AddStuff() {
 	//SELEKTOVANJE-------------------------------------------------------------------------------------------
 	var idGlob;
 	function SelectEvent(id, count) {
-		idGlob = id;
+		
 		editEnable = true;
 		deleteEnable = true;
 		var brojEventa = count;
@@ -238,6 +241,8 @@ function AddStuff() {
 				$("#" + i).css("color", "white");
 				$("#" + i).css("border-radius", "15px");
 				$("#" + i).css("box-shadow", "0 0 5px 3px #FC6B11");
+
+			    uniqueEventId = document.getElementById(i).getElementsByTagName("input")[0].value;
 
 				naslovVR = $("#" + id + " h1").html();
 				opisVR = $("#" + id + " p").html();
@@ -344,9 +349,10 @@ function AddStuff() {
 
 	};
 
-	//CHOSE IMAGE---------------------------------------------------------------------------------
+	//CHOOSE IMAGE---------------------------------------------------------------------------------
 
 	function ChoseImage(id) {
+	    idGlob = "#img"+id;
 		for (var i=1;i<11;i++)
 		{
 			if (id == i) {
@@ -355,7 +361,9 @@ function AddStuff() {
 				$("#" + "img" + i).css("box-shadow", "0 0 5px 5px #FC6B11");
 
 				slikaVR = $("#" + "img" + id).attr("src");
+				categoryId = $("#" + "img" + id).attr("value");
 				$("#slika").attr("src", slikaVR);
+			    console.log(categoryId);
 			}
 			else {
 				$("#" + "img" + i).css("background-color", "");
@@ -365,82 +373,82 @@ function AddStuff() {
 		}
 };
 (function ($) {
-    m = {
-        '\b': '\\b',
-        '\t': '\\t',
-        '\n': '\\n',
-        '\f': '\\f',
-        '\r': '\\r',
-        '"': '\\"',
-        '\\': '\\\\'
-    },
+	m = {
+		'\b': '\\b',
+		'\t': '\\t',
+		'\n': '\\n',
+		'\f': '\\f',
+		'\r': '\\r',
+		'"': '\\"',
+		'\\': '\\\\'
+	},
 	$.toJSON = function (value, whitelist) {
-	    var a,          // The array holding the partial texts.
+		var a,          // The array holding the partial texts.
 			i,          // The loop counter.
 			k,          // The member key.
 			l,          // Length.
 			r = /["\\\x00-\x1f\x7f-\x9f]/g,
 			v;          // The member value.
 
-	    switch (typeof value) {
-	        case 'string':
-	            return r.test(value) ?
+		switch (typeof value) {
+			case 'string':
+				return r.test(value) ?
 				'"' + value.replace(r, function (a) {
-				    var c = m[a];
-				    if (c) {
-				        return c;
-				    }
-				    c = a.charCodeAt();
-				    return '\\u00' + Math.floor(c / 16).toString(16) + (c % 16).toString(16);
+					var c = m[a];
+					if (c) {
+						return c;
+					}
+					c = a.charCodeAt();
+					return '\\u00' + Math.floor(c / 16).toString(16) + (c % 16).toString(16);
 				}) + '"' :
 				'"' + value + '"';
 
-	        case 'number':
-	            return isFinite(value) ? String(value) : 'null';
+			case 'number':
+				return isFinite(value) ? String(value) : 'null';
 
-	        case 'boolean':
-	        case 'null':
-	            return String(value);
+			case 'boolean':
+			case 'null':
+				return String(value);
 
-	        case 'object':
-	            if (!value) {
-	                return 'null';
-	            }
-	            if (typeof value.toJSON === 'function') {
-	                return $.toJSON(value.toJSON());
-	            }
-	            a = [];
-	            if (typeof value.length === 'number' &&
+			case 'object':
+				if (!value) {
+					return 'null';
+				}
+				if (typeof value.toJSON === 'function') {
+					return $.toJSON(value.toJSON());
+				}
+				a = [];
+				if (typeof value.length === 'number' &&
 					!(value.propertyIsEnumerable('length'))) {
-	                l = value.length;
-	                for (i = 0; i < l; i += 1) {
-	                    a.push($.toJSON(value[i], whitelist) || 'null');
-	                }
-	                return '[' + a.join(',') + ']';
-	            }
-	            if (whitelist) {
-	                l = whitelist.length;
-	                for (i = 0; i < l; i += 1) {
-	                    k = whitelist[i];
-	                    if (typeof k === 'string') {
-	                        v = $.toJSON(value[k], whitelist);
-	                        if (v) {
-	                            a.push($.toJSON(k) + ':' + v);
-	                        }
-	                    }
-	                }
-	            } else {
-	                for (k in value) {
-	                    if (typeof k === 'string') {
-	                        v = $.toJSON(value[k], whitelist);
-	                        if (v) {
-	                            a.push($.toJSON(k) + ':' + v);
-	                        }
-	                    }
-	                }
-	            }
-	            return '{' + a.join(',') + '}';
-	    }
+					l = value.length;
+					for (i = 0; i < l; i += 1) {
+						a.push($.toJSON(value[i], whitelist) || 'null');
+					}
+					return '[' + a.join(',') + ']';
+				}
+				if (whitelist) {
+					l = whitelist.length;
+					for (i = 0; i < l; i += 1) {
+						k = whitelist[i];
+						if (typeof k === 'string') {
+							v = $.toJSON(value[k], whitelist);
+							if (v) {
+								a.push($.toJSON(k) + ':' + v);
+							}
+						}
+					}
+				} else {
+					for (k in value) {
+						if (typeof k === 'string') {
+							v = $.toJSON(value[k], whitelist);
+							if (v) {
+								a.push($.toJSON(k) + ':' + v);
+							}
+						}
+					}
+				}
+				return '{' + a.join(',') + '}';
+		}
 	};
 
 })(jQuery);

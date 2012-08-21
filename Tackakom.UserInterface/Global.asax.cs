@@ -28,6 +28,12 @@ namespace Tackakom.UserInterface
             );
 
             routes.MapRoute(
+              "Editing", // Route name
+              "editing/{page}", // URL with parameters
+              new { controller = "Event", action = "Editing", page = UrlParameter.Optional } // Parameter defaults
+          );
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults

@@ -34,7 +34,7 @@ namespace Tackakom.UserInterface.Controllers
             
             Pagination pagination = new Pagination();
 
-            pagination.BaseUrl = "/eventlist/";
+            pagination.BaseUrl = "/editing/";
             pagination.TotalRows = total;
             pagination.CurPage = page;
             pagination.PerPage = pageSize;

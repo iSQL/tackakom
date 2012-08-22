@@ -67,7 +67,6 @@
     <Compile Include="Controllers\AccountController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controllers\EventCategoryController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HomeController.cs">
       <SubType>Code</SubType>
@@ -413,21 +412,6 @@
       <Project>{09834DF9-119F-4CE6-8ABA-A780D42DC62F}</Project>
       <Name>Tackakom.Repository</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EventCategory\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EventCategory\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EventCategory\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EventCategory\Edit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\EventCategory\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Single.cshtml" />

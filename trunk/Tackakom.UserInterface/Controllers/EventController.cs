@@ -48,13 +48,25 @@ namespace Tackakom.UserInterface.Controllers
         [Authorize]
         public ActionResult Editing(int page = 1)
         {
+            Host _host = null;
+            var membershipUser = Membership.GetUser();
+            if (membershipUser != null)
+            {
+                var providerUserKey = membershipUser.ProviderUserKey;
+                if (providerUserKey != null)
+                {
+                    //Za hosta ubaci trenutnog hosta
+                     _host = db.Hosts.Single(x => x.UserID.Equals((Guid)providerUserKey));
+                }
+            }
             //int page = pages.GetValueOrDefault(1);
-            var total = db.Events.Select(p => p.Id).Count();
+            var total = db.Events.Select(x=>x.Host.Id).Where(x=>x.Equals(_host.Id)).Count();
             const int pageSize = 4;
             var skip = pageSize * (page - 1);
             //popunjavanje liste sa modelima
             List<Event> eventi = db.Events
                 .OrderBy(x => x.CreateTime)
+                .Where(x => x.Host.Id.Equals(_host.Id))
                 .Skip(skip)
                 .Take(pageSize)
                 .ToList();
@@ -106,6 +118,7 @@ namespace Tackakom.UserInterface.Controllers
         }
 
         [HttpPost]
+        //todo: Host moze da brise samo svoje evente
         public ActionResult Brisanje(int id)
         {
             Event _event = db.Events.Find(id);
@@ -141,19 +154,6 @@ namespace Tackakom.UserInterface.Controllers
             }
             return View(_event);
         }
-
-
-        //Brisanje
-        //todo: Host moze da brise samo svoje evente
-        [HttpPost]
-        public ActionResult Delete(int id)
-        {            
-            Event _event = db.Events.Find(id);
-            db.Events.Remove(_event);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
 
         protected override void Dispose(bool disposing)
         {

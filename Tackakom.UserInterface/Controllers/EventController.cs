@@ -59,6 +59,7 @@ namespace Tackakom.UserInterface.Controllers
                      _host = db.Hosts.Single(x => x.UserID.Equals((Guid)providerUserKey));
                 }
             }
+            ViewBag.Korisnik = _host.Name;
             //int page = pages.GetValueOrDefault(1);
             var total = db.Events.Select(x=>x.Host.Id).Where(x=>x.Equals(_host.Id)).Count();
             const int pageSize = 4;
@@ -141,6 +142,7 @@ namespace Tackakom.UserInterface.Controllers
                     _event.Host = db.Hosts.Single(host => host.UserID.Equals((Guid)providerUserKey));
                 }
             }
+            
             //Pronadji kategoriju sa zadatim ID
             _event.EventCategory = db.EventCategories.Single(r => r.Id.Equals(_event.EventCategory.Id));
 

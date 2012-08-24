@@ -345,6 +345,7 @@
     <Content Include="Scripts\ui\minified\jquery.ui.sortable.min.js" />
     <Content Include="Scripts\ui\minified\jquery.ui.tabs.min.js" />
     <Content Include="Scripts\ui\minified\jquery.ui.widget.min.js" />
+    <Content Include="Styles\Custom.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -370,8 +371,6 @@
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\LogOn.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -379,16 +378,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Event\Index.cshtml" />
-    <Content Include="Views\Event\Details.cshtml" />
-    <Content Include="Views\Event\Create.cshtml" />
-    <Content Include="Views\Event\Edit.cshtml" />
-    <Content Include="Views\Event\Delete.cshtml" />
     <Content Include="Views\Host\Create.cshtml" />
-    <Content Include="Views\Host\Delete.cshtml" />
-    <Content Include="Views\Host\Details.cshtml" />
-    <Content Include="Views\Host\Edit.cshtml" />
     <Content Include="Views\Host\Index.cshtml" />
     <Content Include="Views\Event\Editing.cshtml" />
+    <Content Include="Views\Event\SingleEvent.cshtml" />
     <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />
@@ -412,9 +405,6 @@
       <Project>{09834DF9-119F-4CE6-8ABA-A780D42DC62F}</Project>
       <Name>Tackakom.Repository</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Single.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

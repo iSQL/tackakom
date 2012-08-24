@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Tackakom.Model;
 using Tackakom.Repository;
+using Valentica.Libraries;
 
 namespace Tackakom.UserInterface.Controllers
 { 
@@ -15,16 +16,32 @@ namespace Tackakom.UserInterface.Controllers
     {
         private DbTackakom db = new DbTackakom();
 
-        //
-        // GET: /Host/
-
-        public ViewResult Index()
+        public ActionResult Index(int hostId, int page = 1)
         {
-            return View(db.Hosts.ToList());
+            var total = db.Events.Select(x => x.Host.Id).Where(x => x.Equals(hostId)).Count();
+            const int pageSize = 4;
+            var skip = pageSize * (page - 1);
+            //popunjavanje liste sa modelima
+            List<Event> places = db.Events
+                .Where(x => x.Host.Id.Equals(hostId))
+                .OrderBy(x => x.StartDate)
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+
+            Pagination pagination = new Pagination();
+
+            pagination.BaseUrl = "/places/"+"/hostId="+hostId.ToString()+"/";
+            pagination.TotalRows = total;
+            pagination.CurPage = page;
+            pagination.PerPage = pageSize;
+
+            string pageLinks = pagination.GetPageLinks();
+            ViewData["pageLinks"] = pageLinks;
+            ViewData["placeName"] = db.Hosts.Find(hostId).Name;
+            return View(places);
         }
 
-        //
-        // GET: /Host/Details/5
 
         public ViewResult Details(int id)
         {
@@ -32,18 +49,12 @@ namespace Tackakom.UserInterface.Controllers
             return View(host);
         }
 
-        //
-        // GET: /Host/Create
-
         public ActionResult Create()
-
         {     
                 return View();
         } 
-
         //
         // POST: /Host/Create
-
         [HttpPost][Authorize]
         public ActionResult Create(Host host)
         {
@@ -69,51 +80,6 @@ namespace Tackakom.UserInterface.Controllers
             return View(host);
         }
         
-        //
-        // GET: /Host/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            Host host = db.Hosts.Find(id);
-            return View(host);
-        }
-
-        //
-        // POST: /Host/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(Host host)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(host).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(host);
-        }
-
-        //
-        // GET: /Host/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            Host host = db.Hosts.Find(id);
-            return View(host);
-        }
-
-        //
-        // POST: /Host/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {            
-            Host host = db.Hosts.Find(id);
-            db.Hosts.Remove(host);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

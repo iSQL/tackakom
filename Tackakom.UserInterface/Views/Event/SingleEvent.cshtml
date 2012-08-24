@@ -1,0 +1,38 @@
+﻿@using Tackakom.UserInterface.Helpers
+@model Tackakom.Model.Event
+
+@{
+	ViewBag.Title = "Događaj";
+	
+}
+
+<h2 class="naslov">Detalji događaja</h2>
+
+
+<div id="event-list">
+   @Model.Title
+   @Model.Description
+   @Model.CreateTime.ToShortDateString() od
+   @Model.StartDate.ToShortTimeString() do
+   @Model.EndDate.ToShortTimeString()
+   @Model.Entry
+   @Model.Host.Name
+   @Model.Host.Description
+   @Model.Host.Image
+   @Model.Host.Address
+</div>
+
+
+@section Menu {
+}
+
+@section Footer {
+	<div id="social">
+		<div id="share">
+			<img src="../../Content/Slike/facebook.png" />
+			<img src="../../Content/Slike/gplus.png" />
+			<img src="../../Content/Slike/twitter.png" />
+		</div>
+	</div>
+}
+

@@ -14,17 +14,6 @@ namespace Tackakom.UserInterface.Controllers
         public ActionResult Index()
         {
             return RedirectToAction("Index","Event", new { page = 1 });
-            //return View();
-        }
-
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Single()
-        {
-            return View();
         }
     }
 }

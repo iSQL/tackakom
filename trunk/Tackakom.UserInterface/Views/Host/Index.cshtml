@@ -1,68 +1,37 @@
-﻿@model IEnumerable<Tackakom.Model.Host>
+﻿@using Tackakom.UserInterface.Helpers
+@model IEnumerable<Tackakom.Model.Event>
 
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Početna";
+	
 }
 
-<h2>Index</h2>
+<h2 class="naslov">Lista događaja</h2><p>Za @ViewData["placeName"]</p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            Image
-        </th>
-        <th>
-            Address
-        </th>
-        <th>
-            UserID
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserID)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<div id="event-list">
+    @{int i = 0;}
+    @foreach (var item in Model) {
+		
+     i = i + 1;
+     @Html.Event(i, item, Model.Count());
+    }
+</div>
+@if ((string)ViewData["pageLinks"] != "") { 
+   @Html.Raw(ViewData["pageLinks"].ToString())
+   <br /><br />
+    }
+
+@section Menu {
 }
 
-</table>
-
-@section Menu {}
 @section Footer {
 	<div id="social">
-	    <div id="share">
-            <img src="../../Content/Slike/facebook.png" />
-            <img src="../../Content/Slike/gplus.png" />
-            <img src="../../Content/Slike/twitter.png" />
-	    </div>
-    </div>
+		<div id="share">
+			<img src="../../Content/Slike/facebook.png" />
+			<img src="../../Content/Slike/gplus.png" />
+			<img src="../../Content/Slike/twitter.png" />
+		</div>
+	</div>
 }
+

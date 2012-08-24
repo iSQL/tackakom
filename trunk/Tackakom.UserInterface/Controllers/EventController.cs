@@ -35,7 +35,7 @@ namespace Tackakom.UserInterface.Controllers
             
             Pagination pagination = new Pagination();
 
-            pagination.BaseUrl = "/editing/";
+            pagination.BaseUrl = "/events/";
             pagination.TotalRows = total;
             pagination.CurPage = page;
             pagination.PerPage = pageSize;
@@ -84,8 +84,8 @@ namespace Tackakom.UserInterface.Controllers
             return View(eventi);
         }
 
-        //Single
-        public ViewResult Details(int id)
+        //Pregled pojedinacnog eventa
+        public ViewResult SingleEvent(int id)
         {
             Event _event = db.Events.Find(id);
             return View(_event);

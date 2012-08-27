@@ -5,7 +5,7 @@ var opis = '<textarea id="opis" placeholder="Opis događaja..." class="text ui-w
 var datum = '<input type="text" name="datum" id="datum" class="text ui-widget-content ui-corner-all" placeholder="Izaberite datum..." /> <br/> <br/>';
 var pocetak = '<input type="text" name="pocetak" id="pocetak" placeholder="Vreme početka..." class="text ui-widget-content ui-corner-all" /> <br/> <br/>';
 var kraj = '<input type="text" name="kra" id="kra" placeholder="Vreme kraja..." class="text ui-widget-content ui-corner-all" /> <br/> <br/>';
-var slika = '<img onclick="ChangeImage()" id="slika" src="../../Content/Slike/izaberi.jpg" />';
+var slika = '<img onclick="ChangeImage()" id="slika" src="http://www.tackakom.com/Content/Slike/izaberi.jpg" />';
 
 function getEvent() {
 	naslovVR = $("#naslov").attr("value");
@@ -43,8 +43,6 @@ function getEventForEdit() {
 }
 
 
-
-
 var naslovVR = "";
 var opisVR = "";
 var datumVR = "";
@@ -52,16 +50,16 @@ var pocetakVR = "";
 var krajVR = "";
 var slikaVR = "";
 
-var slika1 = '<img onclick="ChoseImage(1)" id="img1" class = "slika" src="../../Content/Slike/Ikonice/kockaste/fingerfocus.png" value="1" />';
-var slika2 = '<img onclick="ChoseImage(2)" id="img2" class = "slika" src="../../Content/Slike/Ikonice/kockaste/fxphotostudio.png" value="2" />';
-var slika3 = '<img onclick="ChoseImage(3)" id="img3" class = "slika" src="../../Content/Slike/Ikonice/kockaste/halftone.png" value="3"/>';
-var slika4 = '<img onclick="ChoseImage(4)" id="img4" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lens.png" value="8"/>';
-var slika5 = '<img onclick="ChoseImage(5)" id="img5" class = "slika" src="../../Content/Slike/Ikonice/kockaste/lithogram.png" value="9"/>';
-var slika6 = '<img onclick="ChoseImage(6)" id="img6" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pano.png" value="10"/>';
-var slika7 = '<img onclick="ChoseImage(7)" id="img7" class = "slika" src="../../Content/Slike/Ikonice/kockaste/perfectphoto.png" value="11"/>';
-var slika8 = '<img onclick="ChoseImage(8)" id="img8" class = "slika" src="../../Content/Slike/Ikonice/kockaste/pixrl.png" value="12"/>';
-var slika9 = '<img onclick="ChoseImage(9)" id="img9" class = "slika" src="../../Content/Slike/Ikonice/kockaste/photosynth.png" value="13"/>';
-var slika10 = '<img onclick="ChoseImage(10)" id="img10" class = "slika" src="../../Content/Slike/Ikonice/kockaste/wordfoto.png" value="7"/>';
+var slika1 = '<img onclick="ChoseImage(1)" id="img1" class = "slika" src="http://www.tackakom.com/Content/Slike/Ikonice/kockaste/fingerfocus.png" value="1" />';
+var slika2 = '<img onclick="ChoseImage(2)" id="img2" class = "slika" src="http://www.tackakom.com/Content/Slike/Ikonice/kockaste/fxphotostudio.png" value="2" />';
+var slika3 = '<img onclick="ChoseImage(3)" id="img3" class = "slika" src="http://www.tackakom.com/Content/Slike/Ikonice/kockaste/halftone.png" value="3"/>';
+var slika4 = '<img onclick="ChoseImage(4)" id="img4" class = "slika" src="http://www.tackakom.com/Content/Slike/Ikonice/kockaste/lens.png" value="8"/>';
+var slika5 = '<img onclick="ChoseImage(5)" id="img5" class = "slika" src="http://www.tackakom.com/Content/Slike/Ikonice/kockaste/lithogram.png" value="9"/>';
+var slika6 = '<img onclick="ChoseImage(6)" id="img6" class = "slika" src="http://www.tackakom.com/Content/Slike/Ikonice/kockaste/pano.png" value="10"/>';
+var slika7 = '<img onclick="ChoseImage(7)" id="img7" class = "slika" src="http://www.tackakom.com/Content/Slike/Ikonice/kockaste/perfectphoto.png" value="11"/>';
+var slika8 = '<img onclick="ChoseImage(8)" id="img8" class = "slika" src="http://www.tackakom.com/Content/Slike/Ikonice/kockaste/pixrl.png" value="12"/>';
+var slika9 = '<img onclick="ChoseImage(9)" id="img9" class = "slika" src="http://www.tackakom.com/Content/Slike/Ikonice/kockaste/photosynth.png" value="13"/>';
+var slika10 = '<img onclick="ChoseImage(10)" id="img10" class = "slika" src="http://www.tackakom.com/Content/Slike/Ikonice/kockaste/wordfoto.png" value="7"/>';
 
 
 //DODAJ NOVI------------------------------------------------------------------------------------------------
@@ -124,14 +122,19 @@ function AddStuff() {
 		//DATE PICK
 		$(function () {
 			$.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
-			$("#datum").datepicker({ minDate: 0, maxDate: "+2M" });
+			$("#datum").datepicker({
+			    minDate: 0, 
+                maxDate: "+2M",
+                altField: alterDate,
+			    altFormat: "DD, d MM, yy" 
+            });
 			$("#datum").datepicker("option", "dateFormat", "DD, d MM, yy");
 			$("#datum").datepicker("option", "showAnim", "drop");
 		});
 	};
+	var alterDate = "";
 
 //EDIT-------------------------------------------------------------------------------------------------
-   
 	var editEnable = false;
 
 	function Edit() {
@@ -194,6 +197,7 @@ function AddStuff() {
 						"Izađi": function () {
 							$(this).dialog("close");
 							$(this).dialog("destroy").remove();
+							console.log(alterDate);
 						}
 					}
 
@@ -204,7 +208,12 @@ function AddStuff() {
 		//DATE PICK***********************************************
 		$(function () {
 			$.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
-			$("#datum").datepicker({ minDate: 0, maxDate: "+2M" });
+			$("#datum").datepicker({
+			    minDate: 0,
+			    maxDate: "+2M",
+			    altField: [alterDate],
+			    altFormat: "DD, d MM, yy"
+			});
 			$("#datum").datepicker("option", "dateFormat", "DD, d MM, yy");
 			$("#datum").datepicker("option", "showAnim", "drop");
 		});
@@ -305,7 +314,44 @@ function AddStuff() {
 				pocetakVR = $("#" + id + " em.poc").html();
 				krajVR = $("#" + id + " em.kraj").html();
 				slikaVR = $("#" + id + " img").attr("src");
-			}
+				
+                // WORK
+                switch (slikaVR) {
+                    case "http://www.tackakom.com/Content/Slike/Ikonice/kockaste/fingerfocus.png":
+                        categoryId = 1;
+                        break;
+                    case "http://www.tackakom.com/Content/Slike/Ikonice/kockaste/fxphotostudio.png":
+                        categoryId = 2;
+                        break;
+                    case "http://www.tackakom.com/Content/Slike/Ikonice/kockaste/halftone.png":
+                        categoryId = 3;
+                        break;
+                    case "http://www.tackakom.com/Content/Slike/Ikonice/kockaste/wordfoto.png":
+                        categoryId = 7;
+                        break;
+                    case "http://www.tackakom.com/Content/Slike/Ikonice/kockaste/lens.png":
+                        categoryId = 8;
+                        break;
+                    case "http://www.tackakom.com/Content/Slike/Ikonice/kockaste/lithogram.png":
+                        categoryId = 9;
+                        break;
+                    case "http://www.tackakom.com/Content/Slike/Ikonice/kockaste/pano.png":
+                        categoryId = 10;
+                        break;
+                    case "http://www.tackakom.com/Content/Slike/Ikonice/kockaste/perfectphoto.png":
+                        categoryId = 11;
+                        break;
+                    case "http://www.tackakom.com/Content/Slike/Ikonice/kockaste/pixrl.png":
+                        categoryId = 12;
+                        break;
+                    case "http://www.tackakom.com/Content/Slike/Ikonice/kockaste/photosynth.png":
+                        categoryId = 13;
+                        break;
+                    default:
+                        categoryId = 0;
+                        break;
+                }
+            }
 			else {
 				$("#" + i).css("background-color", "");
 				$("#" + i).css("color", "");

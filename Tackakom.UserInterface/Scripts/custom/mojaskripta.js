@@ -553,3 +553,21 @@ function AddStuff() {
 	};
 
 })(jQuery);
+
+   function postToFacebook(evenId) {
+        var appId = "150821394984437";
+        var link = "http://localhost:55607/single/"+evenId;
+        var picture = slikaVR;
+        var name = naslovVR;
+        var caption = name;
+        var description = opisVR;
+        var redirectUri = "http://tackakom.com/";
+       
+        window.location = "http://www.facebook.com/dialog/feed?app_id=" + appId
+            + "&link=" + link
+            + "&picture=" + picture 
+            + "&name="+name
+            + "&caption=" + caption
+            + "&description=" + description
+            + "&redirect_uri="+ redirectUri;
+}

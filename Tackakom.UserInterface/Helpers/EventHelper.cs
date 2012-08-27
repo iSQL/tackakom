@@ -23,7 +23,7 @@ namespace Tackakom.UserInterface.Helpers
             var naslov = new TagBuilder("a");
             naslov.AddCssClass("naslov");
             naslov.MergeAttribute("href", "/single/" + _event.Id.ToString());
-            naslov.SetInnerText(_event.Title);
+            naslov.InnerHtml += "<h1>" + _event.Title + "</h1>";
 
             var p = new TagBuilder("p");
             p.SetInnerText(_event.Description);
@@ -48,6 +48,7 @@ namespace Tackakom.UserInterface.Helpers
             host.SetInnerText(_event.Host.Name);
 
             var entry = new TagBuilder("p");
+            entry.AddCssClass("entry");
             entry.SetInnerText(_event.Entry);
 
             span.InnerHtml = emVreme.ToString(TagRenderMode.Normal) + emOd.ToString(TagRenderMode.Normal) + emDo.ToString(TagRenderMode.Normal);

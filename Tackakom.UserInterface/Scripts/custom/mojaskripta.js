@@ -158,47 +158,49 @@ function AddStuff() {
 		//OPCIJE DIJALOGA
 			.dialog
 			({
-				autoOpen: false,
-				show: "explode",
-				hide: "explode",
-				title: "Izmeni događaj",
-				modal: true,
-				width: 500,
-				height: 490,
-				buttons:
+			    autoOpen: false,
+			    show: "explode",
+			    hide: "explode",
+			    title: "Izmeni događaj",
+			    modal: true,
+			    width: 500,
+			    height: 490,
+			    buttons:
 					{
-						"Izmeni događaj": function () {
-						    Change();
-						        var event = getEventForEdit();
-						        if (event == null) {
-						            alert("Upisi ime dogadjaja");
-						            return;
-						        }
-						        var json = $.toJSON(event);
+					    "Izmeni događaj": function () {
+					        Change();
+					        var event = getEventForEdit();
+					        if (event == null) {
+					            alert("Upisi ime dogadjaja");
+					            return;
+					        }
+					        var json = $.toJSON(event);
 
-						        $.ajax({
-						            url: '/Event/Edit',
-						            type: 'POST',
-						            dataType: 'json',
-						            data: json,
-						            contentType: 'application/json; charset=utf-8',
-						            success: function (data) {
-						                var message = data.Message;
-						                //$("#obavestenje").html(message);
-						                alert(message);
-						            }
-						        });
-							editEnable = false;
-							deleteEnable = false;
-							$(this).dialog("close");
-							$(this).dialog("destroy").remove();
-							location.reload();
-						},
-						"Izađi": function () {
-							$(this).dialog("close");
-							$(this).dialog("destroy").remove();
-							console.log(alterDate);
-						}
+					        $.ajax({
+					            url: '/Event/Edit',
+					            type: 'POST',
+					            dataType: 'json',
+					            data: json,
+					            contentType: 'application/json; charset=utf-8',
+					            success: function (data) {
+					                var message = data.Message;
+					                //$("#obavestenje").html(message);
+					                alert(message);
+					            }
+					        });
+					        editEnable = false;
+					        deleteEnable = false;
+					        $(this).dialog("close");
+					        $(this).dialog("destroy").remove();
+					        console.log(categoryId);
+					        location.reload();
+					    },
+					    "Izađi": function () {
+					        $(this).dialog("close");
+					        $(this).dialog("destroy").remove();
+					        console.log(categoryId);
+					        console.log(alterDate);
+					    }
 					}
 
 			});
@@ -351,6 +353,7 @@ function AddStuff() {
                         categoryId = 0;
                         break;
                 }
+                console.log(categoryId);
             }
 			else {
 				$("#" + i).css("background-color", "");

@@ -20,10 +20,10 @@ namespace Tackakom.UserInterface.Helpers
             var image = new TagBuilder("img");
             image.MergeAttribute("src", _event.EventCategory.Icon);
 
-            var naslov = new TagBuilder("a");
+            var naslov = new TagBuilder("h1");
             naslov.AddCssClass("naslov");
-            naslov.MergeAttribute("href", "/single/" + _event.Id.ToString());
-            naslov.InnerHtml += "<h1>" + _event.Title + "</h1>";
+            //naslov.MergeAttribute("href", "/single/" + _event.Id.ToString());
+            naslov.InnerHtml +=_event.Title;
 
             var p = new TagBuilder("p");
             p.SetInnerText(_event.Description);

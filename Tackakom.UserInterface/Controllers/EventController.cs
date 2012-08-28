@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Objects;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,7 +16,8 @@ namespace Tackakom.UserInterface.Controllers
 { 
     public class EventController : Controller
     {
-        private DbTackakom db = new DbTackakom();  
+        private DbTackakom db = new DbTackakom();
+
         //
         // GET: /Event/
 
@@ -44,6 +46,35 @@ namespace Tackakom.UserInterface.Controllers
             ViewData["pageLinks"] = pageLinks;
             return View(eventi);
         }
+
+        //Ovo treba protestirati
+        public ActionResult GetEventsByDate(string date, int page = 1)
+        {
+            DateTime dateR;
+            DateTime.TryParse(date, CultureInfo.CreateSpecificCulture("en-US"), DateTimeStyles.None, out dateR);
+            var total = db.Events.Select(x => x.CreateTime).Where(x => x.Equals(dateR)).Count();
+            const int pageSize = 4;
+            var skip = pageSize * (page - 1);
+            //popunjavanje liste sa modelima
+            List<Event> eventi = db.Events
+                .OrderBy(x => x.CreateTime)
+                .Where(x => x.CreateTime.Equals(dateR))
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+
+            Pagination pagination = new Pagination();
+
+            pagination.BaseUrl = "/by_date/"+date+"/";
+            pagination.TotalRows = total;
+            pagination.CurPage = page;
+            pagination.PerPage = pageSize;
+
+            string pageLinks = pagination.GetPageLinks();
+            ViewData["pageLinks"] = pageLinks;
+            return View("Index",eventi);
+        }
+
 
         [Authorize]
         public ActionResult Editing(int page = 1)

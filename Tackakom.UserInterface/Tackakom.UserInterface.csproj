@@ -345,7 +345,6 @@
     <Content Include="Scripts\ui\minified\jquery.ui.sortable.min.js" />
     <Content Include="Scripts\ui\minified\jquery.ui.tabs.min.js" />
     <Content Include="Scripts\ui\minified\jquery.ui.widget.min.js" />
-    <Content Include="Styles\Custom.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

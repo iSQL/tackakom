@@ -33,7 +33,7 @@ namespace Tackakom.UserInterface.Helpers
 
             var emVreme = new TagBuilder("em");
             emVreme.AddCssClass("datum");
-            emVreme.SetInnerText(_event.StartDate.ToShortDateString());
+            emVreme.InnerHtml = ("<a href=/date/"+_event.StartDate.ToShortDateString().Replace("/","-")+">"+_event.StartDate.ToShortDateString()+"</a>");
 
             var emOd = new TagBuilder("em");
             emOd.AddCssClass("poc");

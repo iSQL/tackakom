@@ -3,18 +3,18 @@
     Layout = null;
 }
 
-<form action="../Event/SingleEvent" method="post">
-    <input id="searchTerm" name="Id" type="text" />
-    <input type="submit" value="Go" />
+<form action="/name/" method="post">
+    <input id="filterByName" name="name" type="text" />
+    <input type="submit" value="Pretraga po imenu dogadjaja" />
 </form>
 <script type="text/javascript">
     $(function () {
-        $("#searchTerm").autocomplete({
+        $("#filterByName").autocomplete({
             source: "/Event/GetEventTitles",
             minLength:2,
             select: function (event, ui) {
                 if (ui.item) {
-                    $("#searchTerm").val(ui.item.value);
+                    $("#filterByName").val(ui.item.value);
                     $("form").submit();
                 }
             }

@@ -15,14 +15,17 @@
 		
      i = i + 1;
      @Html.Event(i, item, Model.Count());
+                                        
     }
 </div>
-@if ((string)ViewData["pageLinks"] != "") { 
+@if ((string)ViewData["pageLinks"] != "")
+{ 
    @Html.Raw(ViewData["pageLinks"].ToString())
    <br /><br />
     }
 
 @section Menu {
+@Html.Partial("_FilterByName")
 }
 
 @section Footer {

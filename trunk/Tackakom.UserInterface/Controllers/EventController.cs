@@ -109,6 +109,31 @@ namespace Tackakom.UserInterface.Controllers
             
         }
 
+        public ActionResult GetEventsByPlace(string place, int page = 1)
+        {
+            var total = db.Events.Where(x => x.Host.Name.Contains(place)).Count();
+            const int pageSize = 4;
+            var skip = pageSize * (page - 1);
+            //popunjavanje liste sa modelima
+            List<Event> eventi = db.Events
+                .OrderBy(x => x.CreateTime)
+                .Where(x => x.Host.Name.Contains(place))
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+
+                Pagination pagination = new Pagination();
+                pagination.BaseUrl = "/place/" + place + "/";
+                pagination.TotalRows = total;
+                pagination.CurPage = page;
+                pagination.PerPage = pageSize;
+
+                string pageLinks = pagination.GetPageLinks();
+                ViewData["pageLinks"] = pageLinks;
+                return View("Index", eventi);
+
+        }
+
         [Authorize]
         public ActionResult Editing(int page = 1)
         {
@@ -220,13 +245,24 @@ namespace Tackakom.UserInterface.Controllers
 
         public JsonResult GetEventTitles(string term)
         {
-            var eventi = db.Events
+            var eventNames = db.Events
                 .OrderBy(x => x.CreateTime)
                 .Where(x => x.Title.Contains(term))
                 .Select(x => x.Title)
                 .ToArray();
-            var suggestions = eventi;
-            return Json(suggestions, JsonRequestBehavior.AllowGet);
+            
+            return Json(eventNames, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetPlaceTitles(string term)
+        {
+            var placeNames = db.Events
+                .OrderBy(x => x.CreateTime)
+                .Where(x => x.Host.Name.Contains(term))
+                .Select(x => x.Host.Name)
+                .ToArray();
+
+            return Json(placeNames, JsonRequestBehavior.AllowGet);
         }
 
 

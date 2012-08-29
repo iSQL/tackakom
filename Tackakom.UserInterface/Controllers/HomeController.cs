@@ -12,7 +12,7 @@ namespace Tackakom.UserInterface.Controllers
 
         
         public ActionResult Index()
-        {
+        {   
             return RedirectToAction("Index","Event", new { page = 1 });
         }
     }

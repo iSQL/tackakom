@@ -34,6 +34,16 @@
 		<nav id="main-menu"> 
         <div id="logo"></div>
         @RenderSection("Menu")
+        @if (Session["LoggedIn"] !=null)
+        {
+            @(Session["LoggedIn"].ToString() == 0.ToString() ? Html.ActionLink("Login", "LogOn", "Account") : Html.ActionLink("Logout", "Logoff", "Account"))
+        }
+        else
+        {
+            @Html.ActionLink("Login", "LogOn", "Account")
+        }
+
+
 		</nav>
 	</header><!-- #header-->
 	

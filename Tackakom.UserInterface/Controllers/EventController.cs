@@ -44,6 +44,8 @@ namespace Tackakom.UserInterface.Controllers
 
             string pageLinks = pagination.GetPageLinks();
             ViewData["pageLinks"] = pageLinks;
+
+
             return View(eventi);
         }
 
@@ -186,6 +188,17 @@ namespace Tackakom.UserInterface.Controllers
                 return RedirectToAction("Index");
             }
             return View(_event);
+        }
+
+        public JsonResult GetEventTitles(string term)
+        {
+            var eventi = db.Events
+                .OrderBy(x => x.CreateTime)
+                .Where(x => x.Title.Contains(term))
+                .Select(x => x.Title)
+                .ToArray();
+            var suggestions = eventi;
+            return Json(suggestions, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

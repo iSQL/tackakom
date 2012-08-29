@@ -34,10 +34,13 @@ namespace Tackakom.UserInterface.Controllers
                     if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
                         && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                     {
+                        Session["LoggedIn"] = 1;
                         return Redirect(returnUrl);
                     }
                     else
                     {
+
+                        Session["LoggedIn"] = 1;
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -57,7 +60,7 @@ namespace Tackakom.UserInterface.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-
+            Session["LoggedIn"] = 0;
             return RedirectToAction("Index", "Home");
         }
 

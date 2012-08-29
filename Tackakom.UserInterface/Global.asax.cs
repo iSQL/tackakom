@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace Tackakom.UserInterface
 {
@@ -62,7 +63,6 @@ namespace Tackakom.UserInterface
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());

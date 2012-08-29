@@ -74,7 +74,7 @@ namespace Tackakom.UserInterface.Controllers
             {
                 db.Hosts.Add(host);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index", "Home");  
             }
 
             return View(host);

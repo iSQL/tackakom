@@ -66,7 +66,6 @@ namespace Tackakom.UserInterface.Controllers
                 .ToList();
 
             Pagination pagination = new Pagination();
-
             pagination.BaseUrl = "/by_date/"+date+"/";
             pagination.TotalRows = total;
             pagination.CurPage = page;
@@ -77,6 +76,38 @@ namespace Tackakom.UserInterface.Controllers
             return View("Index",eventi);
         }
 
+        public ActionResult GetEventsByName(string name, int page = 1)
+        {
+            var total = db.Events.Where(x => x.Title.Contains(name)).Count();
+            const int pageSize = 4;
+            var skip = pageSize * (page - 1);
+        //popunjavanje liste sa modelima
+            List<Event> eventi = db.Events
+                .OrderBy(x => x.CreateTime)
+                .Where(x => x.Title.Contains(name))
+                .Skip(skip)
+                .Take(pageSize)
+                .ToList();
+
+            if (total==1)
+            {
+                Event singleEvent = eventi[0];
+                return View("SingleEvent", singleEvent);
+            }
+            else
+            {
+                Pagination pagination = new Pagination();
+                pagination.BaseUrl = "/name/" + name + "/";
+                pagination.TotalRows = total;
+                pagination.CurPage = page;
+                pagination.PerPage = pageSize;
+
+                string pageLinks = pagination.GetPageLinks();
+                ViewData["pageLinks"] = pageLinks;
+                return View("Index",eventi);
+            }
+            
+        }
 
         [Authorize]
         public ActionResult Editing(int page = 1)
@@ -93,7 +124,6 @@ namespace Tackakom.UserInterface.Controllers
                 }
             }
             ViewBag.Korisnik = _host.Name;
-            //int page = pages.GetValueOrDefault(1);
             var total = db.Events.Select(x=>x.Host.Id).Where(x=>x.Equals(_host.Id)).Count();
             const int pageSize = 4;
             var skip = pageSize * (page - 1);
@@ -106,7 +136,6 @@ namespace Tackakom.UserInterface.Controllers
                 .ToList();
 
             Pagination pagination = new Pagination();
-
             pagination.BaseUrl = "/editing/";
             pagination.TotalRows = total;
             pagination.CurPage = page;
@@ -123,7 +152,6 @@ namespace Tackakom.UserInterface.Controllers
             Event _event = db.Events.Find(id);
             return View(_event);
         }
-
 
         [HttpPost]
         public ActionResult Save(Event _event)
@@ -200,6 +228,7 @@ namespace Tackakom.UserInterface.Controllers
             var suggestions = eventi;
             return Json(suggestions, JsonRequestBehavior.AllowGet);
         }
+
 
         protected override void Dispose(bool disposing)
         {

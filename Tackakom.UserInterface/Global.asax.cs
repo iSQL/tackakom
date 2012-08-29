@@ -23,6 +23,12 @@ namespace Tackakom.UserInterface
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+            "ByPlace", // Route name
+            "place/{place}/{page}", // URL with parameters
+            new { controller = "Event", action = "GetEventsByPlace", Place = UrlParameter.Optional, page = UrlParameter.Optional } // Parameter defaults
+        );
+
+            routes.MapRoute(
               "ByName", // Route name
               "name/{name}/{page}", // URL with parameters
               new { controller = "Event", action = "GetEventsByName", Name = UrlParameter.Optional, page = UrlParameter.Optional } // Parameter defaults

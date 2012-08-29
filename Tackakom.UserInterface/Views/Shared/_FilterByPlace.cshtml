@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<form action="/place/" method="post">
+    <input id="filterByPlace" name="place" type="text" />
+    <input type="submit" value="Pretraga po mestu dogadjaja" />
+</form>
+<script type="text/javascript">
+    $(function () {
+        $("#filterByPlace").autocomplete({
+            source: "/Event/GetPlaceTitles",
+            minLength:2,
+            select: function (event, ui) {
+                if (ui.item) {
+                    $("#filterByPlace").val(ui.item.value);
+                    $("form").submit();
+                }
+            }
+        });
+    });
+</script>

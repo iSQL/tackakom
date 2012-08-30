@@ -18,34 +18,17 @@ namespace Tackakom.UserInterface.Controllers
     {
         private DbTackakom db = new DbTackakom();
 
-        //
-        // GET: /Event/
-
-        
         public ActionResult Index(int page = 1)
         {
-            //int page = pages.GetValueOrDefault(1);
             var total = db.Events.Select(p => p.Id).Count();
             const int pageSize = 4;
             var skip = pageSize * (page - 1);
-            //popunjavanje liste sa modelima
-            List<Event> eventi = db.Events
-                .OrderBy(x => x.CreateTime)
-                .Skip(skip)
-                .Take(pageSize)
-                .ToList();
-            
-            Pagination pagination = new Pagination();
+            List<Event> eventi = db.Events.OrderBy(x => x.CreateTime).Skip(skip).Take(pageSize).ToList();
 
-            pagination.BaseUrl = "/events/";
-            pagination.TotalRows = total;
-            pagination.CurPage = page;
-            pagination.PerPage = pageSize;
+            var pagination = new Pagination
+                                        {BaseUrl = "/events/", TotalRows = total, CurPage = page, PerPage = pageSize};
 
-            string pageLinks = pagination.GetPageLinks();
-            ViewData["pageLinks"] = pageLinks;
-
-
+            ViewData["pageLinks"] = pagination.GetPageLinks(); 
             return View(eventi);
         }
 
@@ -57,22 +40,17 @@ namespace Tackakom.UserInterface.Controllers
             var total = db.Events.Select(x => x.CreateTime).Where(x => x.Equals(dateR)).Count();
             const int pageSize = 4;
             var skip = pageSize * (page - 1);
-            //popunjavanje liste sa modelima
-            List<Event> eventi = db.Events
-                .OrderBy(x => x.CreateTime)
-                .Where(x => x.CreateTime.Equals(dateR))
-                .Skip(skip)
-                .Take(pageSize)
-                .ToList();
 
-            Pagination pagination = new Pagination();
-            pagination.BaseUrl = "/by_date/"+date+"/";
-            pagination.TotalRows = total;
-            pagination.CurPage = page;
-            pagination.PerPage = pageSize;
+            List<Event> eventi = db.Events.OrderBy(x => x.CreateTime).Where(x => x.CreateTime.Equals(dateR)).Skip(skip).Take(pageSize).ToList();
 
-            string pageLinks = pagination.GetPageLinks();
-            ViewData["pageLinks"] = pageLinks;
+            var pagination = new Pagination
+                                        {
+                                            BaseUrl = "/by_date/" + date + "/",
+                                            TotalRows = total,
+                                            CurPage = page,
+                                            PerPage = pageSize
+                                        };
+            ViewData["pageLinks"] = pagination.GetPageLinks();
             return View("Index",eventi);
         }
 
@@ -81,13 +59,9 @@ namespace Tackakom.UserInterface.Controllers
             var total = db.Events.Where(x => x.Title.Contains(name)).Count();
             const int pageSize = 4;
             var skip = pageSize * (page - 1);
-        //popunjavanje liste sa modelima
-            List<Event> eventi = db.Events
-                .OrderBy(x => x.CreateTime)
-                .Where(x => x.Title.Contains(name))
-                .Skip(skip)
-                .Take(pageSize)
-                .ToList();
+            List<Event> eventi = new List<Event>();
+            foreach (Event @event in db.Events.OrderBy(x => x.CreateTime).Where(x => x.Title.Contains(name)).Skip(skip).Take(pageSize))
+                eventi.Add(@event);
 
             if (total==1)
             {
@@ -96,17 +70,17 @@ namespace Tackakom.UserInterface.Controllers
             }
             else
             {
-                Pagination pagination = new Pagination();
-                pagination.BaseUrl = "/name/" + name + "/";
-                pagination.TotalRows = total;
-                pagination.CurPage = page;
-                pagination.PerPage = pageSize;
+                var pagination = new Pagination
+                                     {
+                                         BaseUrl = "/name/" + name + "/",
+                                         TotalRows = total,
+                                         CurPage = page,
+                                         PerPage = pageSize
+                                     };
 
-                string pageLinks = pagination.GetPageLinks();
-                ViewData["pageLinks"] = pageLinks;
+                ViewData["pageLinks"] = pagination.GetPageLinks();
                 return View("Index",eventi);
             }
-            
         }
 
         public ActionResult GetEventsByPlace(string place, int page = 1)
@@ -114,30 +88,23 @@ namespace Tackakom.UserInterface.Controllers
             var total = db.Events.Where(x => x.Host.Name.Contains(place)).Count();
             const int pageSize = 4;
             var skip = pageSize * (page - 1);
-            //popunjavanje liste sa modelima
-            List<Event> eventi = db.Events
-                .OrderBy(x => x.CreateTime)
-                .Where(x => x.Host.Name.Contains(place))
-                .Skip(skip)
-                .Take(pageSize)
-                .ToList();
+            List<Event> eventi = db.Events.OrderBy(x => x.CreateTime).Where(x => x.Host.Name.Contains(place)).Skip(skip).Take(pageSize).ToList();
 
-                Pagination pagination = new Pagination();
-                pagination.BaseUrl = "/place/" + place + "/";
-                pagination.TotalRows = total;
-                pagination.CurPage = page;
-                pagination.PerPage = pageSize;
-
-                string pageLinks = pagination.GetPageLinks();
-                ViewData["pageLinks"] = pageLinks;
+            var pagination = new Pagination
+                                 {
+                                     BaseUrl = "/place/" + place + "/",
+                                     TotalRows = total,
+                                     CurPage = page,
+                                     PerPage = pageSize
+                                 };
+                ViewData["pageLinks"] = pagination.GetPageLinks();
                 return View("Index", eventi);
-
         }
 
         [Authorize]
         public ActionResult Editing(int page = 1)
         {
-            Host _host = null;
+            Host host = null;
             var membershipUser = Membership.GetUser();
             if (membershipUser != null)
             {
@@ -145,29 +112,18 @@ namespace Tackakom.UserInterface.Controllers
                 if (providerUserKey != null)
                 {
                     //Za hosta ubaci trenutnog hosta
-                     _host = db.Hosts.Single(x => x.UserID.Equals((Guid)providerUserKey));
+                     host = db.Hosts.Single(x => x.UserID.Equals((Guid)providerUserKey));
                 }
             }
-            ViewBag.Korisnik = _host.Name;
-            var total = db.Events.Select(x=>x.Host.Id).Where(x=>x.Equals(_host.Id)).Count();
+            ViewBag.Korisnik = host.Name;
+            var total = db.Events.Select(x=>x.Host.Id).Where(x=>x.Equals(host.Id)).Count();
             const int pageSize = 4;
             var skip = pageSize * (page - 1);
-            //popunjavanje liste sa modelima
-            List<Event> eventi = db.Events
-                .OrderBy(x => x.CreateTime)
-                .Where(x => x.Host.Id.Equals(_host.Id))
-                .Skip(skip)
-                .Take(pageSize)
-                .ToList();
+            List<Event> eventi = db.Events.OrderBy(x => x.CreateTime).Where(x => x.Host.Id.Equals(host.Id)).Skip(skip).Take(pageSize).ToList();
+            var pagination = new Pagination
+                                        {BaseUrl = "/editing/", TotalRows = total, CurPage = page, PerPage = pageSize};
 
-            Pagination pagination = new Pagination();
-            pagination.BaseUrl = "/editing/";
-            pagination.TotalRows = total;
-            pagination.CurPage = page;
-            pagination.PerPage = pageSize;
-
-            string pageLinks = pagination.GetPageLinks();
-            ViewData["pageLinks"] = pageLinks;
+            ViewData["pageLinks"] = pagination.GetPageLinks();
             return View(eventi);
         }
 
@@ -178,6 +134,7 @@ namespace Tackakom.UserInterface.Controllers
             return View(_event);
         }
 
+
         [HttpPost]
         public ActionResult Save(Event _event)
         {  var membershipUser = Membership.GetUser();
@@ -186,14 +143,13 @@ namespace Tackakom.UserInterface.Controllers
                 var providerUserKey = membershipUser.ProviderUserKey;
                 if (providerUserKey != null)
                 {
-                    //Za hosta ubaci trenutnog hosta
+                    //Za hosta ubaci trenutno ulogovanog hosta
                     _event.Host = db.Hosts.Single(host => host.UserID.Equals((Guid) providerUserKey));
                 }
             }
             //Pronadji kategoriju sa zadatim ID
             _event.EventCategory = db.EventCategories.Single(r => r.Id.Equals(_event.EventCategory.Id));
             
-            //ModelState[]
             if (ModelState.IsValid)
             {
                 db.Events.Add(_event);
@@ -240,31 +196,21 @@ namespace Tackakom.UserInterface.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(_event);
+            return Content("Nije ok");
         }
 
+        //Vraca naslove svih dogadjaja koji zadovoljavaju uslov
         public JsonResult GetEventTitles(string term)
         {
-            var eventNames = db.Events
-                .OrderBy(x => x.CreateTime)
-                .Where(x => x.Title.Contains(term))
-                .Select(x => x.Title)
-                .ToArray();
-            
+            var eventNames = db.Events.OrderBy(x => x.CreateTime).Where(x => x.Title.Contains(term)).Select(x => x.Title).ToArray();
             return Json(eventNames, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetPlaceTitles(string term)
         {
-            var placeNames = db.Events
-                .OrderBy(x => x.CreateTime)
-                .Where(x => x.Host.Name.Contains(term))
-                .Select(x => x.Host.Name)
-                .ToArray();
-
+            var placeNames = db.Events.OrderBy(x => x.CreateTime).Where(x => x.Host.Name.Contains(term)).Select(x => x.Host.Name).ToArray();
             return Json(placeNames, JsonRequestBehavior.AllowGet);
         }
-
 
         protected override void Dispose(bool disposing)
         {

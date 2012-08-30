@@ -2,10 +2,11 @@
 <publishData>
   <publishProfile publishUrl="https://w07.winhost.com:8172/MsDeploy.axd" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="tackakom.com" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="True" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="True" profileName="Profile1" publishMethod="MSDeploy" replaceMatchingFiles="False" userName="tackakom" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1OQl71zN30CWm0hefrOJlgAAAAACAAAAAAADZgAAwAAAABAAAABIzSpLBVEkcnh+v8bY0oDYAAAAAASAAACgAAAAEAAAAJiLH/KMnEotcjIasBbxZuUYAAAARnHsdr6OLVqFpa78meOlU67l82BmsB5tFAAAAEycuGq1SNVpobHlzvULMxZqnWUo" SelectedForPublish="True">
     <file relUrl="Content/themes/base/jquery.ui.button.css" publishTime="07/30/2012 15:16:33" />
-    <file relUrl="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png" publishTime="07/30/2012 15:16:33" />
+    <file relUrl="Content/themes/base/jquery.ui.resizable.css" publishTime="07/30/2012 15:16:33" />
     <file relUrl="Global.asax" publishTime="07/30/2012 15:16:33" />
     <file relUrl="bin/EntityFramework.xml" publishTime="07/30/2012 15:16:36" />
     <file relUrl="Content/themes/base/jquery.ui.tabs.css" publishTime="07/30/2012 15:16:33" />
+    <file relUrl="Web.config" publishTime="08/01/2012 16:01:06" />
     <file relUrl="bin/Tackakom.UserInterface.pdb" publishTime="08/01/2012 15:53:28" />
     <file relUrl="bin/Tackakom.Repository.pdb" publishTime="07/30/2012 15:18:20" />
     <file relUrl="Content/themes/base/jquery.ui.all.css" publishTime="07/30/2012 15:16:33" />
@@ -19,19 +20,18 @@
     <file relUrl="Content/themes/base/jquery.ui.dialog.css" publishTime="07/30/2012 15:16:33" />
     <file relUrl="Content/themes/base/jquery.ui.progressbar.css" publishTime="07/30/2012 15:16:33" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png" publishTime="07/30/2012 15:16:33" />
-    <file relUrl="Content/themes/base/jquery.ui.resizable.css" publishTime="07/30/2012 15:16:33" />
     <file relUrl="Content/themes/base/jquery.ui.datepicker.css" publishTime="07/30/2012 15:16:33" />
     <file relUrl="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png" publishTime="07/30/2012 15:16:33" />
     <file relUrl="Content/themes/base/jquery.ui.theme.css" publishTime="07/30/2012 15:16:33" />
-    <file relUrl="Content/themes/base/jquery.ui.core.css" publishTime="07/30/2012 15:16:33" />
+    <file relUrl="Content/Site.css" publishTime="08/01/2012 15:53:13" />
     <file relUrl="Content/themes/base/jquery.ui.selectable.css" publishTime="07/30/2012 15:16:33" />
     <file relUrl="bin/Tackakom.UserInterface.dll" publishTime="08/01/2012 15:53:30" />
-    <file relUrl="Content/Site.css" publishTime="08/01/2012 15:53:13" />
+    <file relUrl="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png" publishTime="07/30/2012 15:16:33" />
     <file relUrl="Content/themes/base/jquery.ui.slider.css" publishTime="07/30/2012 15:16:33" />
     <file relUrl="bin/EntityFramework.dll" publishTime="07/30/2012 15:16:36" />
     <file relUrl="bin/Tackakom.Model.pdb" publishTime="07/30/2012 15:18:18" />
     <file relUrl="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png" publishTime="07/30/2012 15:16:33" />
     <file relUrl="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png" publishTime="07/30/2012 15:16:33" />
-    <file relUrl="Web.config" publishTime="08/01/2012 16:01:06" />
+    <file relUrl="Content/themes/base/jquery.ui.core.css" publishTime="07/30/2012 15:16:33" />
   </publishProfile>
 </publishData>

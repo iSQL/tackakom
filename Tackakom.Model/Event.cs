@@ -13,6 +13,8 @@ namespace Tackakom.Model
         public DateTime CreateTime { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        [Display(Name = "Naslov")]
         public string Title { get; set; }
         public string Description { get; set; }
         public string Entry { get; set; }

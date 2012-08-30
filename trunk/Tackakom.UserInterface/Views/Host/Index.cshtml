@@ -1,37 +1,27 @@
 ﻿@using Tackakom.UserInterface.Helpers
 @model IEnumerable<Tackakom.Model.Event>
-
-@{
-	ViewBag.Title = "Početna";
-	
-}
+@ViewBag.Title = "Početna";
 
 <h2 class="naslov">Lista događaja</h2><p>Za @ViewData["placeName"]</p>
-
 
 <div id="event-list">
     @{int i = 0;}
     @foreach (var item in Model) {
-		
      i = i + 1;
-     @Html.Event(i, item, Model.Count());
-    }
+     @Html.Event(i, item, Model.Count())
+                                 }
 </div>
 @if ((string)ViewData["pageLinks"] != "") { 
    @Html.Raw(ViewData["pageLinks"].ToString())
-   <br /><br />
     }
-
 @section Menu {
 }
-
 @section Footer {
 	<div id="social">
 		<div id="share">
-			<img src="../../Content/Slike/facebook.png" />
-			<img src="../../Content/Slike/gplus.png" />
-			<img src="../../Content/Slike/twitter.png" />
+			<img src="../../Content/Slike/facebook.png"/>
+			<img src="../../Content/Slike/gplus.png"/>
+			<img src="../../Content/Slike/twitter.png"/>
 		</div>
 	</div>
 }
-

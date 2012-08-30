@@ -9,6 +9,14 @@ namespace Tackakom.UserInterface.Helpers
 {
     public static class EventHelper
     {
+        /// <summary>
+        /// Helper for event display
+        /// </summary>
+        /// <param name="helper">The helper.</param>
+        /// <param name="id">The id on the list</param>
+        /// <param name="_event">The _event for display.</param>
+        /// <param name="count">The count of events on list.</param>
+        /// <returns></returns>
         public static MvcHtmlString Event(this HtmlHelper helper, int id,  Event _event, int count)
         {
 
@@ -22,7 +30,8 @@ namespace Tackakom.UserInterface.Helpers
 
             var naslov = new TagBuilder("h1");
             naslov.AddCssClass("naslov");
-            //naslov.MergeAttribute("href", "/single/" + _event.Id.ToString());
+
+            //naslov.InnerHtml += string.Format("{0}{1}{2}", "<a href='#'>", _event.Title, "</a>");
             naslov.InnerHtml +=_event.Title;
 
             var p = new TagBuilder("p");

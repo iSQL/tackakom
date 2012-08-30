@@ -21,40 +21,31 @@ namespace Tackakom.UserInterface.Controllers
             var total = db.Events.Select(x => x.Host.Id).Where(x => x.Equals(hostId)).Count();
             const int pageSize = 4;
             var skip = pageSize * (page - 1);
-            //popunjavanje liste sa modelima
-            List<Event> places = db.Events
-                .Where(x => x.Host.Id.Equals(hostId))
-                .OrderBy(x => x.StartDate)
-                .Skip(skip)
-                .Take(pageSize)
-                .ToList();
+            List<Event> places = db.Events.Where(x => x.Host.Id.Equals(hostId)).OrderBy(x => x.StartDate).Skip(skip).Take(pageSize).ToList();
+            var pagination = new Pagination
+                                        {
+                                            BaseUrl = "/places/" + "/hostId=" + hostId.ToString() + "/",
+                                            TotalRows = total,
+                                            CurPage = page,
+                                            PerPage = pageSize
+                                        };
 
-            Pagination pagination = new Pagination();
-
-            pagination.BaseUrl = "/places/"+"/hostId="+hostId.ToString()+"/";
-            pagination.TotalRows = total;
-            pagination.CurPage = page;
-            pagination.PerPage = pageSize;
-
-            string pageLinks = pagination.GetPageLinks();
-            ViewData["pageLinks"] = pageLinks;
+            ViewData["pageLinks"] = pagination.GetPageLinks(); ;
             ViewData["placeName"] = db.Hosts.Find(hostId).Name;
             return View(places);
         }
 
 
-        public ViewResult Details(int id)
+        //Pojedinacni host
+        public ViewResult SingleHost(int id)
         {
-            Host host = db.Hosts.Find(id);
-            return View(host);
+            throw new NotImplementedException("Funkcija nije generisana");
         }
 
         public ActionResult Create()
         {     
                 return View();
         } 
-        //
-        // POST: /Host/Create
 
         [HttpPost][Authorize]
         public ActionResult Create(Host host)

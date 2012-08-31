@@ -37,15 +37,15 @@ namespace Tackakom.UserInterface.Controllers
         {
             DateTime dateR;
             DateTime.TryParse(date, CultureInfo.CreateSpecificCulture("en-US"), DateTimeStyles.None, out dateR);
-            var total = db.Events.Select(x => x.CreateTime).Where(x => x.Equals(dateR)).Count();
+            var total = db.Events.Select(x => x.StartDate).Where(x => x.Equals(dateR)).Count();
             const int pageSize = 4;
             var skip = pageSize * (page - 1);
 
-            List<Event> eventi = db.Events.OrderBy(x => x.CreateTime).Where(x => x.CreateTime.Equals(dateR)).Skip(skip).Take(pageSize).ToList();
+            List<Event> eventi = db.Events.OrderBy(x => x.StartDate).Where(x => x.StartDate.Equals(dateR)).Skip(skip).Take(pageSize).ToList();
 
             var pagination = new Pagination
                                         {
-                                            BaseUrl = "/by_date/" + date + "/",
+                                            BaseUrl = "/date/" + date + "/",
                                             TotalRows = total,
                                             CurPage = page,
                                             PerPage = pageSize

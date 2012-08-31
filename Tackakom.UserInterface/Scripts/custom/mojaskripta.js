@@ -1,5 +1,8 @@
 var categoryId = "0";
 var uniqueEventId = null;
+var currentTime = new Date();
+var dateNow = currentTime.getMonth() + 1 + "/" + currentTime.getDate() + "/" + currentTime.getFullYear();
+
 var naslov = '<input type="text" name="naslov" id="naslov" placeholder="Naslov događaja..." class="text ui-widget-content ui-corner-all" /> <br/> <br/>';
 var opis = '<textarea id="opis" placeholder="Opis događaja..." class="text ui-widget-content ui-corner-all"></textarea><br/><br/>';
 var datum = '<input type="text" name="datum" id="datum" class="text ui-widget-content ui-corner-all" placeholder="Izaberite datum..." /> <br/> <br/>';
@@ -9,6 +12,7 @@ var kraj = '<input type="text" name="kra" id="kra" placeholder="Vreme kraja..." 
 var slika = '<img onclick="ChangeImage()" id="slika" src="http://www.tackakom.com/Content/Slike/izaberi.jpg" />';
 
 function getEvent() {
+
 	naslovVR = $("#naslov").attr("value");
 	opisVR = $("#opis").attr("value");
 	datumVR = $("#datumHidden").attr("value");
@@ -17,8 +21,8 @@ function getEvent() {
 	return (naslovVR == "") ? null : { 
 		Title: naslovVR,
 		Description: opisVR,
-		CreateTime: datumVR,
-		StartDate: "6/4/2009",
+		CreateTime: dateNow,
+		StartDate: datumVR,
 		EndDate: "6/4/2009",
 		Entry: "Slobodno",
 		EventCategory: { Id: categoryId }    
@@ -34,8 +38,8 @@ function getEventForEdit() {
         Id: uniqueEventId,
         Title: naslovVR,
         Description: opisVR,
-        CreateTime: datumVR,
-        StartDate: "6/4/2009",
+        CreateTime: dateNow,
+        StartDate: datumVR,
         EndDate: "6/4/2009",
         Entry: "Slobodno",
         EventCategory: { Id: categoryId }
@@ -128,7 +132,7 @@ function AddStuff() {
 			    maxDate: "+2M",
 			    dateFormat: "DD, d MM, yy",
                 altField: '#datumHidden',
-			    altFormat: "dd/mm/yy"
+			    altFormat: "mm/dd/yy"
 			    });
 		});
 	};
@@ -215,7 +219,7 @@ function AddStuff() {
 			    maxDate: "+2M",
 			    dateFormat: "DD, d MM, yy",
 			    altField: '#datumHidden',
-			    altFormat: "dd/mm/yy"
+			    altFormat: "mm/dd/yy"
 			});
 			//$("#datum").datepicker("option", "dateFormat", "DD, d MM, yy"); Je l' ovo sluzi necemu?
 			$("#datum").datepicker("option", "showAnim", "drop");

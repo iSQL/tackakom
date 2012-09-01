@@ -261,23 +261,23 @@ function AddStuff() {
 			    title: "Obriši događaj?",
 			    buttons: {
 			        "Obriši događaj": function () {
-			            
-			            
-			            var json = $.toJSON({Id:uniqueEventId});
+
+			            var json = $.toJSON({ Id: uniqueEventId });
 			            alert(json);
 			            $.ajax({
 			                url: '/Event/Brisanje',
 			                type: 'POST',
 			                dataType: 'json',
 			                data: json,
-			                contentType: 'application/json; charset=utf-8',
-			               // success: function (data) {
-			                    //var message = data.Message;
-			                    //$("#obavestenje").html(message);
-			                    //alert(message);
-			               // }
-                           location.reload();
+			                contentType: 'application/json; charset=utf-8'
+			               // ,
+//			                success: function(data) {
+//			                    var message = data.Message;
+//			                    $("#obavestenje").html(message);
+//			                    alert(message);
+//			                }
 			            });
+			            location.reload();
 			            deleteEnable = false;
 			            editEnable = false;
 			            $(this).dialog("close");

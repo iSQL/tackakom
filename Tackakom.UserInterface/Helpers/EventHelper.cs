@@ -43,7 +43,14 @@ namespace Tackakom.UserInterface.Helpers
             var emVreme = new TagBuilder("em");
             emVreme.AddCssClass("datum");
             CultureInfo srb = CultureInfo.CreateSpecificCulture("sr-Latn-CS");
-            emVreme.InnerHtml = ("<a href=/date/"+_event.StartDate.ToShortDateString().Replace("/","-")+">"+_event.StartDate.ToString("dddd, dd MMMM yyyy", srb)+"</a>");
+            srb = (CultureInfo) srb.Clone();
+            srb.DateTimeFormat.MonthNames =
+                srb.DateTimeFormat.MonthNames.Select(m => srb.TextInfo.ToTitleCase(m)).ToArray();
+            srb.DateTimeFormat.DayNames = srb.DateTimeFormat.DayNames.Select(m => srb.TextInfo.ToTitleCase(m)).ToArray();
+            srb.DateTimeFormat.MonthGenitiveNames =
+                srb.DateTimeFormat.MonthGenitiveNames.Select(m => srb.TextInfo.ToTitleCase(m)).ToArray();
+            emVreme.InnerHtml = ("<a href=/date/" + _event.StartDate.ToShortDateString().Replace("/", "-") + ">" +
+                                 _event.StartDate.ToString("dddd, dd MMMM yyyy", srb) + "</a>");
 
             var emOd = new TagBuilder("em");
             emOd.AddCssClass("poc");
@@ -69,7 +76,7 @@ namespace Tackakom.UserInterface.Helpers
             eventId.MergeAttribute("value", _event.Id.ToString());
 
             var altDate = new TagBuilder("Input");
-            altDate.MergeAttribute("id", "altDate"+id.ToString());
+            altDate.MergeAttribute("id", "altDate" + id.ToString());
             altDate.MergeAttribute("type", "hidden");
             altDate.MergeAttribute("value", _event.StartDate.ToShortDateString());
             

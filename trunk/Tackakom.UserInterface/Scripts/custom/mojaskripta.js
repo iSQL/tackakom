@@ -196,14 +196,10 @@ function AddStuff() {
 					        deleteEnable = false;
 					        $(this).dialog("close");
 					        $(this).dialog("destroy").remove();
-					        console.log(categoryId);
-					        location.reload();
 					    },
 					    "Izađi": function () {
 					        $(this).dialog("close");
 					        $(this).dialog("destroy").remove();
-					        console.log(categoryId);
-					        console.log(alterDate);
 					    }
 					}
 
@@ -275,11 +271,12 @@ function AddStuff() {
 			                dataType: 'json',
 			                data: json,
 			                contentType: 'application/json; charset=utf-8',
-			                success: function (data) {
-			                    var message = data.Message;
+			               // success: function (data) {
+			                    //var message = data.Message;
 			                    //$("#obavestenje").html(message);
-			                    alert(message);
-			                }
+			                    //alert(message);
+			               // }
+                           location.reload();
 			            });
 			            deleteEnable = false;
 			            editEnable = false;
@@ -358,7 +355,6 @@ function AddStuff() {
                         categoryId = 0;
                         break;
                 }
-                console.log(categoryId);
             }
 			else {
 				$("#" + i).css("background-color", "");
@@ -440,7 +436,8 @@ function AddStuff() {
 				resizable: false,
 				modal: true,
 				title: "Izaberite sliku",
-				width: 450,
+				width: 460,
+                height: 290,
 				buttons: {
 					"Izaberi": function () {
 						$(this).dialog("close");
@@ -472,7 +469,6 @@ function AddStuff() {
 				slikaVR = $("#" + "img" + id).attr("src");
 				categoryId = $("#" + "img" + id).attr("value");
 				$("#slika").attr("src", slikaVR);
-			    console.log(categoryId);
 			}
 			else {
 				$("#" + "img" + i).css("background-color", "");

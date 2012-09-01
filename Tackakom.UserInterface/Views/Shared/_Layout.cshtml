@@ -32,7 +32,9 @@
 <body>
     <header id="header">
 		<nav id="main-menu"> 
-        <div id="logo"></div>
+        <div id="logo">
+           <a href="/home"> <img src="../../Content/Slike/logo-bazinga.png" /></a>
+        </div>
         @RenderSection("Menu")
         @if (Session["LoggedIn"] !=null)
         {

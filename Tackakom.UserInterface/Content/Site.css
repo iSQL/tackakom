@@ -102,7 +102,7 @@ background: #e7dbbb;
 	color: #FFF;
 	font-size: 25px;
 }
-#logo{
+#logo img{
 float:left;
 cursor:pointer;
 -moz-transition: all 0.2s;
@@ -111,7 +111,7 @@ width: 139px;
 height: 114px;
 background: url("./Slike/logo-bazinga.png");
 }
-#logo:hover
+#logo img:hover
 {
 -moz-transform: scale(1.1);
 -webkt-transform: scale(1.1);
@@ -237,19 +237,21 @@ font-size: 14px;
 font-weight:bold; 
 position: absolute;  
 bottom: 10px;
+left:130px;
 }
 .event em
 {
 color: #BF3E2D;
 -moz-transition: all 0.2s;
 -webkit-transition: all 0.2s;
+margin-right:10px;
 }
 .event em:hover
 {
 color:#E54E3D;
 font-size: 16px;
 }
-.event a
+.autor
 {
 float:right;
 font-size: 14px;
@@ -262,7 +264,7 @@ position: absolute;
 bottom: 10px;
 right: 15px;
 }
-.event a:hover
+.autor:hover
 {
 color:#E54E3D;
 font-size: 17px;
@@ -271,6 +273,12 @@ font-size: 17px;
 {
 font-size: 20px;
 margin: 5px 5px 10px 125px;   
+}
+.datum a
+{
+text-decoration: none;
+color: #BF3E2D;
+font-weight: bold;    
 }
 /* Footer
 -----------------------------------------------------------------------------*/

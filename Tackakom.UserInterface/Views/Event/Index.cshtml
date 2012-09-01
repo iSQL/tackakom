@@ -19,9 +19,9 @@
     }
 </div>
 @if ((string)ViewData["pageLinks"] != "")
-{ 
+{ <div class="pagination">
    @Html.Raw(ViewData["pageLinks"].ToString())
-   <br /><br />
+   <br /><br /></div>
     }
 
 @section Menu {

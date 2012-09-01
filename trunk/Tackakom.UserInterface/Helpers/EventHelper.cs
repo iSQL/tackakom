@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,8 +31,7 @@ namespace Tackakom.UserInterface.Helpers
 
             var naslov = new TagBuilder("h1");
             naslov.AddCssClass("naslov");
-
-            //naslov.InnerHtml += string.Format("{0}{1}{2}", "<a href='#'>", _event.Title, "</a>");
+             //naslov.InnerHtml += string.Format("{0}{1}{2}", "<a href='#'>", _event.Title, "</a>");
             naslov.InnerHtml +=_event.Title;
 
             var p = new TagBuilder("p");
@@ -42,7 +42,8 @@ namespace Tackakom.UserInterface.Helpers
 
             var emVreme = new TagBuilder("em");
             emVreme.AddCssClass("datum");
-            emVreme.InnerHtml = ("<a href=/date/"+_event.StartDate.ToShortDateString().Replace("/","-")+">"+_event.StartDate.ToShortDateString()+"</a>");
+            CultureInfo srb = CultureInfo.CreateSpecificCulture("sr-Latn-CS");
+            emVreme.InnerHtml = ("<a href=/date/"+_event.StartDate.ToShortDateString().Replace("/","-")+">"+_event.StartDate.ToString("dddd, dd MMMM yyyy", srb)+"</a>");
 
             var emOd = new TagBuilder("em");
             emOd.AddCssClass("poc");
@@ -53,6 +54,7 @@ namespace Tackakom.UserInterface.Helpers
             emDo.SetInnerText("Do " + _event.EndDate.ToShortTimeString());
 
             var host = new TagBuilder("a");
+            host.AddCssClass("autor");
             host.MergeAttribute("href", "/places/"+_event.Host.Id.ToString());
             host.SetInnerText(_event.Host.Name);
 

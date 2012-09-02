@@ -3,9 +3,9 @@
     Layout = null;
 }
 
-<form action="/place/" method="post">
-    <input id="filterByPlace" name="place" type="text" />
-    <input type="submit" value="Pretraga po mestu" />
+<form id="placeForm" action="/place/" method="post">
+    <input id="filterByPlace" placeholder="Pretraga po mestu..." name="place" type="text" />
+    <input  type="hidden" value="Pretraga po mestu" />
 </form>
 <script type="text/javascript">
     $(function () {
@@ -15,7 +15,7 @@
             select: function (event, ui) {
                 if (ui.item) {
                     $("#filterByPlace").val(ui.item.value);
-                    $("form").submit();
+                    $("#placeForm").submit();
                 }
             }
         });

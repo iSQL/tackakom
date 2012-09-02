@@ -3,9 +3,9 @@
     Layout = null;
 }
 
-<form action="/name/" method="post">
-    <input id="filterByName" name="name" type="text" />
-    <input type="submit" value="Pretraga po nazivu" />
+<form id="nameForm" action="/name/" method="post">
+    <input id="filterByName" placeholder="Pretraga po imenu..." name="name" type="text" />
+    <input type="hidden" value="Pretraga po nazivu" />
 </form>
 <script type="text/javascript">
     $(function () {
@@ -15,7 +15,7 @@
             select: function (event, ui) {
                 if (ui.item) {
                     $("#filterByName").val(ui.item.value);
-                    $("form").submit();
+                    $("#nameForm").submit();
                 }
             }
         });

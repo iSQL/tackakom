@@ -129,10 +129,10 @@ namespace Valentica.Libraries
 
         #region Link Properties
 
-        private string  _firstLink       = "&lsaquo; First";
-        private string  _nextLink        = "&gt;";
-        private string  _prevLink        = "&lt;";
-        private string  _lastLink        = "Last &rsaquo;";
+        private string  _firstLink       = "Prvi";
+        private string  _nextLink        = "&rsaquo;&rsaquo;";
+        private string  _prevLink        = "&lsaquo;&lsaquo;";
+        private string  _lastLink        = "Poslednji";
 
         #endregion
 
@@ -727,7 +727,7 @@ namespace Valentica.Libraries
                 if (this.CurPage > this.NumLinks)
                 {
                     pageLink.Append(this.FirstTagOpen);
-                    pageLink.Append("<a href='" + this.BaseUrl + "1" + "'>");
+                    pageLink.Append("<a class=\"pagFirst\" href='" + this.BaseUrl + "1" + "'>");
                     pageLink.Append(this.FirstLink);
                     pageLink.Append("</a>");
                     pageLink.Append(this.FirstTagClose);
@@ -882,7 +882,7 @@ namespace Valentica.Libraries
                 if ((this.CurPage + this.NumLinks) < NumPages)
                 {
                     pageLink.Append(this.LastTagOpen);
-                    pageLink.Append("<a href='" + this.BaseUrl + Convert.ToString(NumPages) + "'>");
+                    pageLink.Append("<a class=\"pagLast\" href='" + this.BaseUrl + Convert.ToString(NumPages) + "'>");
                     pageLink.Append(this.LastLink);
                     pageLink.Append("</a>");
                     pageLink.Append(this.LastTagClose);

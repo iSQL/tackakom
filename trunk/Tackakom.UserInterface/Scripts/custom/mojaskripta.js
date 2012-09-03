@@ -144,7 +144,6 @@ function AddStuff() {
                 secondText: 'Sekunde',
                 currentText: 'Trenutno',
                 closeText: 'Potvrdi'
-                
 			    });
                 $("#datum").datetimepicker("option", "showAnim", "drop");
         });
@@ -159,7 +158,7 @@ function AddStuff() {
                 minuteText: 'Minuti',
                 secondText: 'Sekunde',
                 currentText: 'Trenutno',
-                closeText: 'Potvrdi',
+                closeText: 'Potvrdi'
             });
            $("#kra").timepicker("option", "showAnim", "drop");
         });
@@ -273,7 +272,7 @@ $("#datum").datetimepicker({
                 minuteText: 'Minuti',
                 secondText: 'Sekunde',
                 currentText: 'Trenutno',
-                closeText: 'Potvrdi',
+                closeText: 'Potvrdi'
             });
             $("#kra").timepicker("option", "showAnim", "drop");
         });

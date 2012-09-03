@@ -149,7 +149,7 @@ function AddStuff() {
         });
         $(function () {
            // $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
-            $("#kra").timepicker({
+            $("#kra").datetimepicker({
                 hourGrid: 4,
                 minuteGrid: 10,
                 timeOnlyTitle: 'Izaberite vreme',

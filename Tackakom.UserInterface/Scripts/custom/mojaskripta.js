@@ -130,7 +130,7 @@ function AddStuff() {
 			$("#datum").datetimepicker({
 			    minDate: 0,
 			    maxDate: "+2M",
-			    dateFormat: "DD, d. MM, yy",
+			    dateFormat: "mm/dd/yy",
                 timeFormat: 'hh:mm',
 	            separator: ' || ',
                 //altField: '#datumHidden',
@@ -241,7 +241,7 @@ function AddStuff() {
 $("#datum").datetimepicker({
 			    minDate: 0,
 			    maxDate: "+2M",
-			    dateFormat: "DD, d. MM, yy",
+			    dateFormat: "mm/dd/yy",
                 timeFormat: 'hh:mm',
 	            separator: ' || ',
                 //altField: '#datumHidden',
@@ -263,7 +263,7 @@ $("#datum").datetimepicker({
             //TIME
             $(function () {
            // $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
-            $("#kra").timepicker({
+            $("#kra").datetimepicker({
                 hourGrid: 4,
                 minuteGrid: 10,
                 timeOnlyTitle: 'Izaberite vreme',

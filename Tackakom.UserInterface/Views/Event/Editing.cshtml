@@ -28,8 +28,8 @@
         <div onclick="AddStuff()" id="btn1"></div>
         <div onclick="Edit()" id="btn2"></div>
         <div onclick="Delete()" id="btn3"></div>
-         @Html.ActionLink("Back to home", "Index", "Home")
     </div>
+     @Html.ActionLink("Back to home", "Index", "Home", null, new { id = "backToId" })
    
 }
 @section Footer {

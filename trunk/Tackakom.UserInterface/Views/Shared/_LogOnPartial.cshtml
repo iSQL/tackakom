@@ -1,11 +1,11 @@
 ﻿@if(Request.IsAuthenticated) {
     
-    <text>Cao <strong>@User.Identity.Name</strong>!
-        [@Html.ActionLink("Log Off", "LogOff", "Account", null, new { id = "logOffId" }))]
-        [@Html.ActionLink("Editing", "editing", "Event", null, new { id = "editId" })]</text>
+    <text><div class="login"><strong>Cao @User.Identity.Name</strong>!
+        @Html.ActionLink("Izloguj se", "LogOff", "Account", null, new { id = "logOffId" })
+        @Html.ActionLink("Moji dogadjaji", "editing", "Event", null, new { id = "editId" })</div></text>
     
 }
 else
 {
-    @:[ @Html.ActionLink("Log On", "LogOn", "Account", null, new { id = "logOnId" }) ]
+   <div class="login">@Html.ActionLink("Uloguj se", "LogOn", "Account", null, new { id = "logOnId" })</div>
 }

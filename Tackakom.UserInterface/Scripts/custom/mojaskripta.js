@@ -7,7 +7,7 @@ var naslov = '<input type="text" name="naslov" id="naslov" placeholder="Naslov d
 var opis = '<textarea id="opis" placeholder="Opis događaja..." class="text ui-widget-content ui-corner-all"></textarea><br/><br/>';
 var datum = '<input type="text" name="datum" id="datum" class="text ui-widget-content ui-corner-all" placeholder="Izaberite datum..." /> <br/> <br/>';
 var datumHidden= '<input type="hidden" name="datum" id="datumHidden" />';
-var pocetak = '<input type="text" name="pocetak" id="pocetak" placeholder="Vreme početka..." class="text ui-widget-content ui-corner-all" /> <br/> <br/>';
+var cena = '<input type="text" name="cena" id="cena" placeholder="Cena..." class="text ui-widget-content ui-corner-all" /> <br/> <br/>';
 var kraj = '<input type="text" name="kra" id="kra" placeholder="Vreme kraja..." class="text ui-widget-content ui-corner-all" /> <br/> <br/>';
 var slika = '<img onclick="ChangeImage()" id="slika" src="http://www.tackakom.com/Content/Slike/izaberi.jpg" />';
 
@@ -16,7 +16,7 @@ function getEvent() {
 	naslovVR = $("#naslov").attr("value");
 	opisVR = $("#opis").attr("value");
 	datumVR = $("#datumHidden").attr("value");
-	pocetakVR = $("#pocetak").attr("value");
+	cenaVR = $("#cena").attr("value");
 	krajVR = $("#kra").attr("value");
 	return (naslovVR == "") ? null : { 
 		Title: naslovVR,
@@ -32,7 +32,7 @@ function getEventForEdit() {
     naslovVR = $("#naslov").attr("value");
     opisVR = $("#opis").attr("value");
     datumVR = $("#datumHidden").attr("value");
-    pocetakVR = $("#pocetak").attr("value");
+    cenaVR = $("#cena").attr("value");
     krajVR = $("#kra").attr("value");
     return (naslovVR == "") ? null : {
         Id: uniqueEventId,
@@ -51,7 +51,7 @@ function getEventForEdit() {
 var naslovVR = "";
 var opisVR = "";
 var datumVR = "";
-var pocetakVR = "";
+var cenaVR = "";
 var krajVR = "";
 var slikaVR = "";
 
@@ -74,7 +74,7 @@ function AddStuff() {
 	//SADRZAJ DIJALOGA
 			.html
 			(
-			'<form>' + naslov + opis + slika + datum + datumHidden + pocetak + kraj + '</form>'
+			'<form>' + naslov + opis + slika + datum + datumHidden + kraj + cena + '</form>'
 			)
 
 	//OPCIJE DIJALOGA
@@ -125,16 +125,45 @@ function AddStuff() {
 		//return false; <---- ????????
 
 		//DATE PICK
+		$.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
 		$(function () {
-			$.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
-			$("#datum").datepicker({
+			$("#datum").datetimepicker({
 			    minDate: 0,
 			    maxDate: "+2M",
-			    dateFormat: "DD, d MM, yy",
-                altField: '#datumHidden',
-			    altFormat: "mm/dd/yy"
+			    dateFormat: "DD, d. MM, yy",
+                timeFormat: 'hh:mm',
+	            separator: ' || ',
+                //altField: '#datumHidden',
+                //altFormat: "mm/dd/yy",
+                hourGrid: 4,
+                minuteGrid: 10,
+                timeOnlyTitle: 'Izaberite vreme',
+                timeText: 'Vreme',
+                hourText: 'Časovi',
+                minuteText: 'Minuti',
+                secondText: 'Sekunde',
+                currentText: 'Trenutno',
+                closeText: 'Potvrdi'
+                
 			    });
-		});
+                $("#datum").datetimepicker("option", "showAnim", "drop");
+        });
+        $(function () {
+           // $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
+            $("#kra").timepicker({
+                hourGrid: 4,
+                minuteGrid: 10,
+                timeOnlyTitle: 'Izaberite vreme',
+                timeText: 'Vreme',
+                hourText: 'Časovi',
+                minuteText: 'Minuti',
+                secondText: 'Sekunde',
+                currentText: 'Trenutno',
+                closeText: 'Potvrdi',
+            });
+           $("#kra").timepicker("option", "showAnim", "drop");
+        });
+
 	};
 	var alterDate = "";
 
@@ -156,7 +185,7 @@ function AddStuff() {
 		//SADRZAJ DIJALOGA
 			.html
 			(
-			'<form>' + naslov + opis + slika + datum + datumHidden+ pocetak + kraj + '</form>'
+			'<form>' + naslov + opis + slika + datum + datumHidden+ kraj + cena + '</form>'
 			)
 
 		//OPCIJE DIJALOGA
@@ -208,23 +237,51 @@ function AddStuff() {
 				$dialog.dialog('open');
 
 		//DATE PICK***********************************************
-		$(function () {
-			$.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
-			$("#datum").datepicker({
+		$.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
+        $(function () {
+$("#datum").datetimepicker({
 			    minDate: 0,
 			    maxDate: "+2M",
-			    dateFormat: "DD, d MM, yy",
-			    altField: '#datumHidden',
-			    altFormat: "mm/dd/yy"
+			    dateFormat: "DD, d. MM, yy",
+                timeFormat: 'hh:mm',
+	            separator: ' || ',
+                //altField: '#datumHidden',
+                //altFormat: "mm/dd/yy",
+                hourGrid: 4,
+                minuteGrid: 10,
+                timeOnlyTitle: 'Izaberite vreme',
+                timeText: 'Vreme',
+                hourText: 'Časovi',
+                minuteText: 'Minuti',
+                secondText: 'Sekunde',
+                currentText: 'Trenutno',
+                closeText: 'Potvrdi'
 			});
 			//$("#datum").datepicker("option", "dateFormat", "DD, d MM, yy"); Je l' ovo sluzi necemu?
-			$("#datum").datepicker("option", "showAnim", "drop");
+			$("#datum").datetimepicker("option", "showAnim", "drop");
 		});
+
+            //TIME
+            $(function () {
+           // $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
+            $("#kra").timepicker({
+                hourGrid: 4,
+                minuteGrid: 10,
+                timeOnlyTitle: 'Izaberite vreme',
+                timeText: 'Vreme',
+                hourText: 'Časovi',
+                minuteText: 'Minuti',
+                secondText: 'Sekunde',
+                currentText: 'Trenutno',
+                closeText: 'Potvrdi',
+            });
+            $("#kra").timepicker("option", "showAnim", "drop");
+        });
 		//********************************************************
 		$("#naslov").attr("value", naslovVR);
 		$("#opis").html(opisVR);
 		$("#datum").attr("value", datumVR);
-		$("#pocetak").attr("value", pocetakVR);
+		$("#cena").attr("value", cenaVR);
 		$("#kra").attr("value", krajVR);
 		$("#slika").attr("src", slikaVR);
 	};
@@ -315,7 +372,7 @@ function AddStuff() {
 				naslovVR = $("#" + id + " h1").html();
 				opisVR = $("#" + id + " p").html();
 				datumVR = $("#" + id + " em.datum").html();
-				pocetakVR = $("#" + id + " em.poc").html();
+				cenaVR = $("#" + id + " em.poc").html();
 				krajVR = $("#" + id + " em.kraj").html();
 				slikaVR = $("#" + id + " img").attr("src");
 				
@@ -400,7 +457,7 @@ function AddStuff() {
 		naslovVR = $("#naslov").attr("value");
 		opisVR = $("#opis").attr("value");
 		datumVR = $("#datum").attr("value");
-		pocetakVR = $("#pocetak").attr("value");
+		cenaVR = $("#cena").attr("value");
 		krajVR = $("#kra").attr("value");
 		slikaVR = $("#slika").attr("src");
 
@@ -412,7 +469,7 @@ function AddStuff() {
 		$("#" + idGlob + " h1").html(naslovVR);
 		$("#" + idGlob + " p").html(opisVR);
 		$("#" + idGlob + " em.datum").html(datumVR);
-		$("#" + idGlob + " em.poc").html(pocetakVR);
+		$("#" + idGlob + " em.poc").html(cenaVR);
 		$("#" + idGlob + " em.kraj").html(krajVR);
 		$("#" + idGlob + " img").attr("src", slikaVR);
 	};

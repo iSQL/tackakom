@@ -79,7 +79,7 @@ input {
 
 body
 {
-background: #e7dbbb;    
+background: #e7dbbb url("./Slike/pattern.png");
 }
 
 
@@ -128,7 +128,8 @@ background: url("./Slike/logo-bazinga.png");
 	margin: 40px 20px;
 	height: 32px;
 	width: 120px;
-	background: url("./Slike/Btns/AddNewU.png");
+	background: url("./Slike/Btns/result.png");
+	background-position: 0px -37px;
     cursor: pointer;
     float:left;   
     border-radius: 7px;
@@ -142,7 +143,8 @@ background: url("./Slike/logo-bazinga.png");
 	margin: 40px 20px;
 	height: 32px;
 	width: 120px;
-	background: url("./Slike/Btns/EditU.png");
+	background: url("./Slike/Btns/result.png");
+	background-position: 0px -185px;
     cursor: pointer;   
     float:left;
     border-radius: 7px;
@@ -156,7 +158,8 @@ background: url("./Slike/logo-bazinga.png");
 	margin: 40px 20px;
 	height: 32px;
 	width: 120px;
-	background: url("./Slike/Btns/DeleteU.png");
+	background: url("./Slike/Btns/result.png");
+	background-position: 0px -111px;
     cursor: pointer;   
     float:left;
     border-radius: 7px;
@@ -168,21 +171,98 @@ background: url("./Slike/logo-bazinga.png");
 }
 #btn1:hover
 {
-    background: url("./Slike/Btns/AddNew.png");
+    background: url("./Slike/Btns/result.png");
+	background-position: 0px 0px;
     box-shadow: 0 0 5px #FFF;
     -webkit-box-shadow: 0 0 5px #FFF;
 }
 #btn2:hover
 {
-    background: url("./Slike/Btns/Edit.png");
+    background: url("./Slike/Btns/result.png");
+	background-position: 0px -148px;
     box-shadow: 0 0 5px #FFF;
     -webkit-box-shadow: 0 0 5px #FFF;
 }
 #btn3:hover
 {
-    background: url("./Slike/Btns/Delete.png");
+    background: url("./Slike/Btns/result.png");
+	background-position: 0px -74px;
     box-shadow: 0 0 5px #FFF;
     -webkit-box-shadow: 0 0 5px #FFF;
+}
+#main-menu input
+{
+    float:left;
+    margin-left: 10px;
+    margin-top: 10px;
+    height: 20px;
+    -moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+#main-menu input:focus
+{
+/*width: 175px;*/
+box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+}
+.login 
+{
+    position:absolute;
+    bottom: 50px;
+    left: 145px;
+}
+.login a
+{
+    margin-left: 10px;
+}
+.login strong
+{
+    margin-left: 5px;
+}
+#logOffId
+{
+    text-decoration:none;
+    color: rgba(255,255,255, 0.5);
+    font-weight:bold;
+    -moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+#editId
+{
+    text-decoration:none;
+    color: rgba(255,255,255, 0.5);
+    font-weight:bold;
+    -moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+#logOnId
+{
+    text-decoration:none;
+    color: rgba(255,255,255, 0.5);
+    font-weight:bold;
+    -moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+}
+#logOffId:hover
+{
+color: rgba(255,255,255, 1);
+}
+#logOnId:hover
+{
+color: rgba(255,255,255, 1);
+}
+#editId:hover
+{
+color: rgba(255,255,255, 1);
+}
+#filterByPlace input:focus, textarea:focus
+{
+    -moz-box-shadow: -5px -5px 5px #fff;
+}
+#filterByName
+{
+}
+#filterByDate
+{
 }
 /* Middle
 -----------------------------------------------------------------------------*/
@@ -204,7 +284,7 @@ background: url("./Slike/logo-bazinga.png");
 .event
 {
 	position: relative;
-	background: rgba(2555,255,255, 0.5);
+	background: rgba(255,255,255, 0.5);
 	margin: 10px;
 	padding: 10px;
 	text-indent: 20px;
@@ -284,8 +364,61 @@ text-decoration: none;
 color: #BF3E2D;
 font-weight: bold;    
 }
-
-
+.pagination 
+{
+margin-left:15px;
+}
+.pagination a
+{
+display: block;
+float:left;
+height: 25px;
+margin-right:5px;
+background: #333;
+min-width: 25px;
+text-align:center;
+font-size: 15px;
+font-weight:bold;
+line-height: 25px;
+text-decoration: none;
+	cursor:pointer;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+		background: rgba(2555,255,255, 0.5);
+		color: #BF3E2D;
+}
+.pagination b
+{
+display: block;
+float:left;
+height: 25px;
+margin-right:5px;
+background: #333;
+min-width: 25px;
+text-align:center;
+font-size: 15px;
+line-height: 25px;
+	cursor:pointer;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.5);  
+	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,0.5);  
+		background: rgba(2555,255,255, 0.5);
+}
+.pagination a:hover
+{
+  	box-shadow: 1px 1px 2px rgba(0,0,0,0.5);  
+}
+.pagFirst
+{
+    width:50px;
+}
+.pagLast
+{
+    width:80px;
+}
 /* Footer
 -----------------------------------------------------------------------------*/
 #footer {

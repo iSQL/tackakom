@@ -28,6 +28,7 @@ namespace Tackakom.UserInterface
             new { controller = "Event", action = "GetEventsByPlace", Place = UrlParameter.Optional, page = UrlParameter.Optional } // Parameter defaults
         );
 
+
             routes.MapRoute(
               "ByName", // Route name
               "name/{name}/{page}", // URL with parameters
@@ -59,8 +60,14 @@ namespace Tackakom.UserInterface
             );
 
             routes.MapRoute(
-              "Editing", // Route name
-              "editing/{page}", // URL with parameters
+                "Priceless", // Route name
+                "priceless/{page}", // URL with parameters
+                new { controller = "Event", action = "GetPricelessEvents", page = UrlParameter.Optional } // Parameter defaults
+                );
+
+            routes.MapRoute(
+              "my_events", // Route name
+              "my_events/{page}", // URL with parameters
               new { controller = "Event", action = "Editing", page = UrlParameter.Optional } // Parameter defaults
           );
 

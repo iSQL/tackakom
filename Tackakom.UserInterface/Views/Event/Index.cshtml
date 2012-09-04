@@ -2,8 +2,7 @@
 @model IEnumerable<Tackakom.Model.Event>
 
 @{
-	ViewBag.Title = "Početna";
-	
+    ViewBag.Title = "Početna";
 }
 
 <h2 class="naslov">Lista događaja</h2>
@@ -28,6 +27,7 @@
 @Html.Partial("_FilterByName")
 @Html.Partial("_FilterByPlace")
 @Html.Partial("_FilterByDate")
+@Html.Partial("_FilterByPrice")
 @Html.Partial("_LogOnPartial")
 }
 

@@ -49,6 +49,7 @@ namespace Tackakom.UserInterface.Helpers
             srb.DateTimeFormat.DayNames = srb.DateTimeFormat.DayNames.Select(m => srb.TextInfo.ToTitleCase(m)).ToArray();
             srb.DateTimeFormat.MonthGenitiveNames =
                 srb.DateTimeFormat.MonthGenitiveNames.Select(m => srb.TextInfo.ToTitleCase(m)).ToArray();
+
             emVreme.InnerHtml = ("<a href=/date/" + _event.StartDate.ToShortDateString().Replace("/", "-") + ">" +
                                  _event.StartDate.ToString("dddd, dd MMMM yyyy", srb) + "</a>");
 

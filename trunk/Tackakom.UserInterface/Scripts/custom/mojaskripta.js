@@ -343,7 +343,7 @@ $("#datum").datetimepicker({
 //			                    var message = data.Message;
 //			                    $("#obavestenje").html(message);
 //			                    alert(message);
-//			                }
+//			                }000000000000000000000000000000000000000000000000000000000
                         });
                         location.reload();
                         deleteEnable = false;
@@ -628,7 +628,7 @@ $("#datum").datetimepicker({
 
    function postToFacebook(evenId) {
         var appId = "150821394984437";
-        var link = "http://localhost:55607/single/"+evenId;
+        var link = "http://tackakom.com/single/" + evenId;
         var picture = slikaVR;
         var name = naslovVR;
         var caption = name;
@@ -642,4 +642,7 @@ $("#datum").datetimepicker({
             + "&caption=" + caption
             + "&description=" + description
             + "&redirect_uri="+ redirectUri;
-}
+    }
+    function postToGooglePlus(evenId) {
+        window.location = "https://plus.google.com/share?url=" + "http://tackakom.com/single/" + evenId;
+    }

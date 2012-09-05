@@ -128,15 +128,18 @@ function AddStuff() {
         $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
         $(function () {
             $("#datum").datetimepicker({
-                minDate: 0,
+                minDate: "0",
                 maxDate: "+2M",
+                hourMin: 0,
+                hourMax: 24,
                 dateFormat: "mm/dd/yy",
                 timeFormat: 'hh:mm',
                 //separator: ' || ',
                 //altField: '#datumHidden',
                 //altFormat: "mm/dd/yy",
-                hourGrid: 4,
-                minuteGrid: 10,
+                stepMinute: 15,
+                hourGrid: 3,
+                minuteGrid: 15,
                 timeOnlyTitle: 'Izaberite vreme',
                 timeText: 'Vreme',
                 hourText: 'Časovi',
@@ -151,8 +154,12 @@ function AddStuff() {
         $(function () {
            // $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
             $("#kra").datetimepicker({
-                hourGrid: 4,
-                minuteGrid: 10,
+                maxDate: "+5D",
+                hourMin: 0,
+                hourMax: 24,
+                stepMinute: 15,
+                hourGrid: 3,
+                minuteGrid: 15,
                 timeOnlyTitle: 'Izaberite vreme',
                 timeText: 'Vreme',
                 hourText: 'Časovi',
@@ -186,7 +193,7 @@ function AddStuff() {
         //SADRZAJ DIJALOGA
             .html
             (
-            '<form>' + naslov + opis + slika + datum + datumHidden+ kraj + cena + '</form>'
+            '<form>' + naslov + opis + slika + datum + kraj + cena + '</form>'
             )
 
         //OPCIJE DIJALOGA
@@ -245,11 +252,11 @@ $("#datum").datetimepicker({
                 maxDate: "+2M",
                 dateFormat: "mm/dd/yy",
                 timeFormat: 'hh:mm',
-                separator: ' || ',
-                //altField: '#datumHidden',
-                //altFormat: "mm/dd/yy",
-                hourGrid: 4,
-                minuteGrid: 10,
+                hourMin: 0,
+                hourMax: 24,
+                stepMinute: 15,
+                hourGrid: 3,
+                minuteGrid: 15,
                 timeOnlyTitle: 'Izaberite vreme',
                 timeText: 'Vreme',
                 hourText: 'Časovi',
@@ -265,9 +272,12 @@ $("#datum").datetimepicker({
             //TIME
             $(function () {
            // $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
-            $("#kra").datetimepicker({
-                hourGrid: 4,
-                minuteGrid: 10,
+                $("#kra").datetimepicker({
+                hourMin: 0,
+                hourMax: 24,
+                stepMinute: 15,
+                hourGrid: 3,
+                minuteGrid: 15,
                 timeOnlyTitle: 'Izaberite vreme',
                 timeText: 'Vreme',
                 hourText: 'Časovi',

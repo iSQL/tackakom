@@ -31,8 +31,8 @@ namespace Tackakom.UserInterface.Helpers
 
             var naslov = new TagBuilder("h1");
             naslov.AddCssClass("naslov");
-             //naslov.InnerHtml += string.Format("{0}{1}{2}", "<a href='#'>", _event.Title, "</a>");
-            naslov.InnerHtml +=_event.Title;
+            naslov.InnerHtml += string.Format("{0}{1}{2}", "<a href='/single/"+_event.Id+"'>", _event.Title, "</a>");
+            //naslov.InnerHtml +=_event.Title;
 
             var p = new TagBuilder("p");
             p.SetInnerText(_event.Description);

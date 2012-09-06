@@ -354,12 +354,21 @@ right: 15px;
 color:#E54E3D;
 font-size: 17px;
 }
-.naslov
+.naslov a
 {
  float:none;
 font-size: 18px;
 text-decoration: none;
 color: #222;
+font-weight: bold;
+-moz-transition: all 0.2s; 
+}
+.naslov a:hover
+{
+ float:none;
+font-size: 18px;
+text-decoration: none;
+color: rgba(0,0,0,0.5);
 font-weight: bold;
 -moz-transition: all 0.2s; 
 }
@@ -495,3 +504,162 @@ height:64;
     -webkit-transform: scale(0.8);
     cursor:pointer;
 }
+
+/*
+ _______  _______  _______  _______
+(       )(  ___  )(  ____ )(  ____ \
+| () () || (   ) || (    )|| (    \/
+| || || || (___) || (____)|| (__    
+| |(_)| ||  ___  ||     __)|  __)   
+| |   | || (   ) || (\ (   | (      
+| )   ( || )   ( || ) \ \__| (____/\
+|/     \||/     \||/   \__/(_______/
+*/    
+
+input.red 
+{
+    background-color: #920d06;
+    color: #fcb0ac;
+    font-weight: bold;
+}
+.eventSingle
+{
+	position: relative;
+	background: rgba(255,255,255, 0.5);
+	margin: 10px;
+	padding: 10px;
+	text-indent: 20px;
+	height: 135px;
+	cursor:pointer;
+}
+.eventSingle:hover
+{
+  	box-shadow: 1px 1px 2px rgba(0,0,0,0.5);  
+}
+
+.eventSingle img 
+{
+    float:left;
+    margin: 5px;
+}
+
+.eventSingle p 
+{
+margin: 5px 5px 10px 125px;
+text-align:justify;    
+}
+
+.eventSingle em
+{
+color: #BF3E2D;
+-moz-transition: all 0.2s;
+-webkit-transition: all 0.2s;
+margin-right:10px;
+}
+
+.eventSingle em:hover
+{
+color:#E54E3D;
+font-size: 16px;
+}
+
+.eventSingle .autor
+{
+float:right;
+font-size: 14px;
+text-decoration: none;
+color: #BF3E2D;
+font-weight: bold;
+-moz-transition: all 0.2s;    
+-webkit-transition: all 0.2s;
+position: absolute;  
+bottom: 10px;
+right: 15px;
+}
+
+.eventSingle .autor:hover
+{
+color:#E54E3D;
+font-size: 17px;
+}
+
+.eventSingle span
+{
+float:left;
+font-size: 14px;
+font-weight:bold; 
+position: absolute;  
+bottom: 10px;
+left:130px;
+}
+
+.eventSingle h1
+{
+float:none;
+font-size: 18px;
+text-decoration: none;
+color: #222;
+font-weight: bold;
+-moz-transition: all 0.2s; 
+}
+
+.eventSingle .datum
+{
+text-decoration: none;
+color: #BF3E2D;
+font-weight: bold;    
+}
+
+.hostSingle
+{
+	position: relative;
+	background: rgba(155,0,0, 0.1);
+	margin: 10px;
+	padding: 10px;
+	text-indent: 20px;
+	height: 450px;
+} 
+.hostSingle h1
+{
+font-size: 18px;
+color: #222;
+font-weight: bold;
+-moz-transition: all 0.2s; 
+}
+.hostSingle p 
+{
+margin: 5px 5px 10px 125px;
+text-align:justify;    
+}
+
+.hostSingle a:link
+{
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #BF3E2D;
+}
+.hostSingle a:hover
+{
+    color: rgba(155,0,0, 0.5);
+}
+.hostSingle a:visited
+{
+    color: rgba(155,0,0, 0.1);
+}
+
+.hostSingle img
+{
+    float: right;
+    height: 320px;
+    width: 480px;
+}
+
+.hostSingle img:hover
+{
+    float: right;
+    height: 325px;
+    width: 485px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.5);  
+}
+                            

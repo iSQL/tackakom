@@ -30,7 +30,7 @@ function getEvent() {
 function getEventForEdit() {
     naslovVR = $("#naslov").attr("value");
     opisVR = $("#opis").attr("value");
-    datumVR = $("#datumHidden").attr("value");
+    datumVR = $("#datum").attr("value");
     cenaVR = $("#cena").attr("value");
     krajVR = $("#kra").attr("value");
     return (naslovVR == "") ? null : {
@@ -39,8 +39,8 @@ function getEventForEdit() {
         Description: opisVR,
         CreateTime: dateNow,
         StartDate: datumVR,
-        EndDate: "6/4/2009",
-        Entry: "Slobodno",
+        EndDate: krajVR,
+        Entry: cenaVR,
         EventCategory: { Id: categoryId }
         
     };
@@ -248,7 +248,7 @@ function AddStuff() {
         $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
         $(function () {
 $("#datum").datetimepicker({
-                minDate: 0,
+                minDate: "0",
                 maxDate: "+2M",
                 dateFormat: "mm/dd/yy",
                 timeFormat: 'hh:mm',
@@ -273,6 +273,7 @@ $("#datum").datetimepicker({
             $(function () {
            // $.datepicker.setDefaults($.datepicker.regional["sr-SR"]);
                 $("#kra").datetimepicker({
+                maxDate: "+5D",
                 hourMin: 0,
                 hourMax: 24,
                 stepMinute: 15,

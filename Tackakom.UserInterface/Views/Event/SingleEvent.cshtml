@@ -9,18 +9,26 @@
 <h2 class="naslov">Detalji događaja</h2>
 
 
-<div id="event-list">
-   @Model.Title
-   @Model.Description
-   @Model.CreateTime.ToShortDateString() od
-   @Model.StartDate.ToShortTimeString() do
-   @Model.EndDate.ToShortTimeString()
-   @Model.Entry
-   @Model.Host.Name
-   @Model.Host.Description
-   @Model.Host.Image
-   @Model.Host.Address
-</div>
+    <div class="eventSingle">
+       <h1>@Model.Title</h1>
+        <img src="@Model.EventCategory.Icon"/>
+       <p>@Model.Description</p>
+      
+       <span>
+       <em class="datum">@Model.CreateTime.ToShortDateString()</em> od
+       <em class="poc">@Model.StartDate.ToShortTimeString()</em> do
+       <em class="kra">@Model.EndDate.ToShortTimeString()</em>
+       </span>
+       <a class="autor" href="/places/@Model.Host.Id">@Model.Host.Name</a>
+       @Model.Entry
+   </div>
+
+   <div class="hostSingle">
+       <h1>@Model.Host.Name</h1>
+       <p>@Model.Host.Description</p>
+       <img src="@Model.Host.Image"/>
+       <a href="https://maps.google.com/maps?q=@Model.Host.Address">@Model.Host.Address</a>
+   </div>
 
 
 @section Menu {

@@ -87,6 +87,7 @@
     <Content Include="Content\Slike\Btns\DeleteU.png" />
     <Content Include="Content\Slike\Btns\Edit.png" />
     <Content Include="Content\Slike\Btns\EditU.png" />
+    <Content Include="Content\Slike\Btns\result.png" />
     <Content Include="Content\Slike\Button-Add-icon.png" />
     <Content Include="Content\Slike\Button-Delete-icon.png" />
     <Content Include="Content\Slike\Button-Edit-icon.png" />
